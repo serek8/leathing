@@ -1,0 +1,33 @@
+body{
+padding-left:0px;
+margin-left:0px;
+margin-right:0px;
+margin-top:0px;
+}
+
+div{
+
+}
+
+#accounttopbar
+{
+height: 20px;
+background-color:#96A0A0;
+}
+
+div.panel, div.slidebutton
+{
+height: 30px;
+display:block;
+font-size: 20px;
+text-align:center;
+vertical-align:middle;
+background-color:#e5eecc;
+border:solid 1px #c3c3c3;
+}
+
+#panelslidebuttonDodaj, #panelslidebuttonZostawione
+{
+display:none;
+height:100px;
+}
