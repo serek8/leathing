@@ -23,20 +23,30 @@
 <div class="slidebutton" id="slidebuttonZostawione">Zostawione</div>
 <div id="panelslidebuttonZostawione">W tych miejscach zostawiles to i to...</div>
 
-x2
-<div id="fb-root"></div>
+x3
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '769021013181466',
+      xfbml      : true,
+      version    : 'v2.2'
+    });
+  };
 
-<script type="text/javascript">
- $(document).on('click', '#login', function(){
-   facebookConnectPlugin.login(["email,user_birthday,publish_actions"], function(response) {
-      if(response.authResponse) {
-         alert(response.authResponse.userID);
-      }
-   });
- });
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
 </script>
-
-<img id="login" src="images/login.png" alt="" />
+<div
+  class="fb-like"
+  data-share="true"
+  data-width="450"
+  data-show-faces="true">
+</div>
 x
 
 
