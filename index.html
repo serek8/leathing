@@ -8,7 +8,7 @@
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="onescript.js"></script>
 <script src="onefacebook.js"></script> 
-<script scr="phonegap.js"></script>
+<script src="phonegap.js"></script>
 <script src="cdv-plugin-fb-connect.js"></script > 
 <script src="facebook-js-sdk.js"></script > 
 </head>
@@ -24,6 +24,12 @@
 <div id="panelslidebuttonZostawione">W tych miejscach zostawiles to i to...</div>
 
 x
+<div class="event listening button" onclick="login();">Login with Facebook</div>
+            <div class="event listening button" onclick="showDialog();">Show Dialog with Facebook</div>
+            <div class="event listening button" onclick="apiTest();">Test API with Facebook</div>
+            <div class="event listening button" onclick="getAccessToken();">Get access token with Facebook</div>
+            <div class="event listening button" onclick="getStatus();">Get login status with Facebook</div>
+            <div class="event listening button" onclick="logout();">Logout with Facebook</div>
 <div
   class="fb-like"
   data-share="true"
