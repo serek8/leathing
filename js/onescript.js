@@ -13,8 +13,7 @@ function onLoad() {
 		alert("jesteem");
         // Now safe to use device APIs
 		if(getStatus() != 'connected') login();
-		alert('jestemStatus='+getStatus());
-		document.getElementById('newsy').innerHTML=myUser.UserName+" "+UserEmail+" "+UserIdToSignUp;
+		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
     }
 
 $(document).ready(function(){
