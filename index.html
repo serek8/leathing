@@ -38,8 +38,8 @@ x10
             }
             
             var apiTest = function () { 
-                facebookConnectPlugin.api( "/me", {fields:'last_name'},
-                    function (response) { alert(JSON.stringify(response)) },
+                facebookConnectPlugin.api( "me?fields=id,email,name", ["user_birthday"],
+                    function (response) { alert(response.id) },
                     function (response) { alert(JSON.stringify(response)) }); 
             }
             var logPurchase = function () {
