@@ -7,13 +7,14 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script src="js/onescript.js"></script>
+<script src="js/onefacebook.js"></script>
 
 <script src="phonegap.js"></script>
 <script src="cdv-plugin-fb-connect.js"></script > 
 <script src="facebook-js-sdk.js"></script > 
 </head>
 
-<body>
+<body onload="onLoad();">
 <div id="accounttopbar">Janusz</div>
 <div id="googleMap" style="width:100%;height:380px;"></div>
 
@@ -25,58 +26,7 @@
 
 x10
  <script>
-            var login = function () {
-                facebookConnectPlugin.login( ["public_profile","email"],
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
             
-            var showDialog = function () { 
-                facebookConnectPlugin.showDialog( { method: "feed" }, 
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
-            
-            var apiTest = function () { 
-                facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
-                    function (response) { alert("result="+typeof(response)+"disp="+response+"email="+response.email+"|"+response['email']);  },
-                    function (response) { alert("muERROE="+JSON.stringify(response)) }); 
-            }
-            var logPurchase = function () {
-                facebookConnectPlugin.logPurchase(1.99, "USD",
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
-            var logEvent = function () {
-                // For more information on AppEvent param structure see
-                // https://developers.facebook.com/docs/ios/app-events
-                // https://developers.facebook.com/docs/android/app-events
-                facebookConnectPlugin.logEvent("Purchased",
-                    {
-                        NumItems: 1,
-                        Currency: "USD",
-                        ContentType: "shoes",
-                        ContentID: "HDFU-8452"
-                    }, null,
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
-            var getAccessToken = function () { 
-                facebookConnectPlugin.getAccessToken( 
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
-            
-            var getStatus = function () { 
-                facebookConnectPlugin.getLoginStatus( 
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
-            var logout = function () { 
-                facebookConnectPlugin.logout( 
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
-            }
         </script>
  <div class="app">
             <h1>Apache Cordova</h1>
@@ -94,7 +44,7 @@ x10
             <div class="event listening button" onclick="logout();">Logout with Facebook</div>
         </div>
         <div id="fb-root"></div>
-
+<div id="newsy">...</div>
        
 x
 

@@ -1,5 +1,20 @@
 var slideMapButtonVisibility=0;
 var panelToChange;
+
+var myUser = {UserName:"", UserEmail:"", UserIdToSignUp:0"};
+
+
+function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+// device APIs are available
+    function onDeviceReady() {
+        // Now safe to use device APIs
+		if(getStatus() != 'connected') login();
+		document.getElementById('newsy').innerHTML=myUser.UserName+" "+UserEmail+" "+UserIdToSignUp;
+    }
+
 $(document).ready(function(){
   $(".slidebutton").click(function(){
 	panelToChange="#panel"+(this.id);
