@@ -38,9 +38,9 @@ x10
             }
             
             var apiTest = function () { 
-                facebookConnectPlugin.api( "me?fields=id,email,name", ["user_birthday"],
-                    function (response) { alert(response.id) },
-                    function (response) { alert(JSON.stringify(response)) }); 
+                facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
+                    function (response) { alert("result="+typeof(response)+"disp="+response+"email="+response.email+"|"+response['email']);  },
+                    function (response) { alert("muERROE="+JSON.stringify(response)) }); 
             }
             var logPurchase = function () {
                 facebookConnectPlugin.logPurchase(1.99, "USD",
