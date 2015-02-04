@@ -1,7 +1,7 @@
-var slideMapButtonVisibility=0;
+var slideMapButtonVisibility = 0;
 var panelToChange;
 
-var myUser = {UserName:"", UserEmail:"", UserIdToSignUp:0"};
+var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0};
 
 
 function onLoad() {
