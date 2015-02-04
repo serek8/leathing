@@ -38,7 +38,7 @@ x10
             }
             
             var apiTest = function () { 
-                facebookConnectPlugin.api( "/me", ["last_name","user_birthday","email"],
+                facebookConnectPlugin.api( "/me", {fields:'last_name'},
                     function (response) { alert(JSON.stringify(response)) },
                     function (response) { alert(JSON.stringify(response)) }); 
             }
