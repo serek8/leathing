@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>leavething.com</title>
-<link rel="stylesheet" href="onestyle.css">
+<link rel="stylesheet" href="css/onestyle.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
-<script src="onescript.js"></script>
+<script src="js/onescript.js"></script>
 
 <script src="phonegap.js"></script>
 <script src="cdv-plugin-fb-connect.js"></script > 
@@ -26,11 +26,7 @@
 x10
  <script>
             var login = function () {
-                if (!window.cordova) {
-                    var appId = prompt("Enter FB Application ID", "");
-                    facebookConnectPlugin.browserInit(appId);
-                }
-                facebookConnectPlugin.login( ["email"],
+                facebookConnectPlugin.login( ["public_profile","email"],
                     function (response) { alert(JSON.stringify(response)) },
                     function (response) { alert(JSON.stringify(response)) });
             }
