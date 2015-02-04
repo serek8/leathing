@@ -10,8 +10,10 @@ function onLoad() {
 
 // device APIs are available
     function onDeviceReady() {
+		
         // Now safe to use device APIs
 		if(getStatus() != 'connected') login();
+		alert('jestemStatus='+getStatus());
 		document.getElementById('newsy').innerHTML=myUser.UserName+" "+UserEmail+" "+UserIdToSignUp;
     }
 
