@@ -19,6 +19,7 @@
 						myUser.UserName=response.name;  
 						myUser.UserIdToSignUp=response.id;
 						myUser.UserEmail=response.email;
+						myUser.UserIsSet=1;
 						},
                     function (response) { alert("muERROE="+JSON.stringify(response)); }); 
             };
@@ -48,9 +49,9 @@
             };
             
             var getStatus = function () { 
-				myCurrentStatus="nic";
+				myCurrentStatus="";
                 facebookConnectPlugin.getLoginStatus( 
-                    function (response) { myCurrentStatus=response.status; },
+                    function (response) { myCurrentStatus=response.status; alert(JSON.stringify(response));},
                     function (response) { alert(JSON.stringify(response)); });
 				return myCurrentStatus;
             };

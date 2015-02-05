@@ -1,36 +1,63 @@
 var slideMapButtonVisibility = 0;
 var panelToChange;
 
-var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0};
+var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserIsSet:0};
 
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }
 	
-function GetSomeInfoAboutUser_callback()
+function GetSomeInfoAboutUser()
 {
 	apiTest();
-	alert(JSON.stringify(myUser));
+	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
+	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
+		function checkVariable() {
+			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;();} 
+			else {setTimeout(checkVariable,100); }
+		}
+		checkVariable();
+	/* Koniec checkVariable */
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+	
 }
 		
-function SignInWhenNotSignedIn_callback(GetSomeInfoAboutUser_callback_obj){
-	if(myCurrentStatus != "connected") login();
-	GetSomeInfoAboutUser_callback_obj();
+function SignInWhenNotSignedIn(){
+	login();
+	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
+	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
+		function checkVariable() {
+			if(myCurrentStatus=="connected")		{ alert('Zalogowany'); GetSomeInfoAboutUser();} 
+			else {setTimeout(checkVariable,100); }
+		}
+		checkVariable();
+	/* Koniec checkVariable */
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 }
-function oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback_obj) {
-	myCurrentStatus=getStatus();
-	// Now I run callback function
-	SignInWhenNotSignedIn_callback_obj(GetSomeInfoAboutUser_callback);		
-}
+	
+
 
 // device APIs are available
     function onDeviceReady() {
 	
-		/* Sprawdzam czy uzytkownik sie zalogowal*/
-
-		oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback);
-		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
+		/* Sprawdzam czy uzytkownik sie zalogowal i przypisuje		*/
+		/*  wynik zmiennej 'myCurrentStatus' sa mozliwe				*/
+		/*  dwie wartosci tej zmiennej: 'connected' i 'undefinied'	*/
+		getStatus(); 
+		
+		/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
+		/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
+			function checkVariable() {
+				if(myCurrentStatus=="connected")		{ alert('Zalogowany'); GetSomeInfoAboutUser();} 
+				else if(myCurrentStatus=="undefined") 	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
+				else {setTimeout(checkVariable,100); }
+			}
+			checkVariable();
+		/* Koniec checkVariable */
+		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+		
+		
     }
 
 $(document).ready(function(){
