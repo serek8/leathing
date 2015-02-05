@@ -16,7 +16,7 @@ function GetUserPicture()
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
 			if(myUser.UserIsPictureSet==1)		
-			{ document.getElementById("accountImgElement").src=myUser.UserImageURL; alert(myUser.UserImageURL);} 
+			{ document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL; } 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();
@@ -33,7 +33,7 @@ function GetSomeInfoAboutUser()
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
 			if(myUser.UserIsSet==1)	
-				{alert(myUser.UserName); document.getElementById("AccountTopBarUserName").innerHTML=myUser.UserName; GetUserPicture();} 
+				{alert(myUser.UserName); document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName); GetUserPicture();} 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();
