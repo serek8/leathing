@@ -8,29 +8,37 @@ function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }
 	
+	
+function GetUserPicture()
+{
+	apiGetPicture();
+		/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
+	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
+		function checkVariable() {
+			if(myUser.UserIsPictureSet==1)		
+			{ document.getElementById("accountImgElement").src=myUser.UserImageURL; alert(myUser.UserImageURL);} 
+			else {setTimeout(checkVariable,100); }
+		}
+		checkVariable();
+	/* Koniec checkVariable */
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+}
+	
+	
+	
 function GetSomeInfoAboutUser()
 {
 	apiTest();
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("newsy").innerHTML=myUser.UserName;} 
+			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("AccountTopBarUserName").innerHTML=myUser.UserName; GetUserPicture();} 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();
 	/* Koniec checkVariable */
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	apiGetPicture();
-		/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
-	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
-		function checkVariable() {
-			if(myUser.UserIsPictureSet==1)		
-			{ document.getElementById("accountImgElement").src=UserImageURL;} 
-			else {setTimeout(checkVariable,100); }
-		}
-		checkVariable();
-	/* Koniec checkVariable */
-	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
 }
 		
 function SignInWhenNotSignedIn(){
