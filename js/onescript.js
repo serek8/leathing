@@ -10,9 +10,10 @@ function onLoad() {
 
 // device APIs are available
     function onDeviceReady() {
-		alert("jeesteem a oto getStatus()="+getStatus());
+		alert("ready| a oto getStatus()="+getStatus());
+		alert("ready"+JSON.stringify(getStatus()));
         // Now safe to use device APIs
-		if(getStatus() != 'connected') login();
+		if(getStatus() != "connected") login();
 		//apiTest();
 		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
     }

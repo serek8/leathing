@@ -52,6 +52,7 @@
                 facebookConnectPlugin.getLoginStatus( 
                     function (response) { myCurrentStatus=response.status; },
                     function (response) { alert(JSON.stringify(response)) });
+					alert("W funkcji getStatus(), return="JSON.stringify(myCurrentStatus);
 				return myCurrentStatus;
             }
             var logout = function () { 
