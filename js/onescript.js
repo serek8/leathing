@@ -16,7 +16,7 @@ function onLoad() {
 			fun1_callback();
 			//apiTest();
 		}
-		oneFacebookStatusCheckAndSignIn(function(){if(myCurrentStatus() != "connected") login();})
+		oneFacebookStatusCheckAndSignIn(function(){if(myCurrentStatus() != "connected") login();});
 		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
     }
 
