@@ -32,7 +32,8 @@ function GetSomeInfoAboutUser()
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("AccountTopBarUserName").innerHTML=myUser.UserName; GetUserPicture();} 
+			if(myUser.UserIsSet==1)	
+				{alert(myUser.UserName); document.getElementById("AccountTopBarUserName").innerHTML=myUser.UserName; GetUserPicture();} 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();

@@ -3,7 +3,7 @@
 			
 			var login = function () {
                 facebookConnectPlugin.login( ["public_profile","email"],
-                    function (response) { alert(JSON.stringify(response)); },
+                    function (response) { /*alert(JSON.stringify(response));*/ },
                     function (response) { alert(JSON.stringify(response)); });
             };
             
@@ -59,7 +59,7 @@
             var getStatus = function () { 
 				myCurrentStatus="";
                 facebookConnectPlugin.getLoginStatus( 
-                    function (response) { myCurrentStatus=response.status; alert(JSON.stringify(response));},
+                    function (response) { myCurrentStatus=response.status;},
                     function (response) { alert(JSON.stringify(response)); });
 				return myCurrentStatus;
             };
