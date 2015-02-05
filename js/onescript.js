@@ -8,28 +8,27 @@ function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }
 	
-var GetSomeInfoAboutUser_callback = function()
+function GetSomeInfoAboutUser_callback()
 {
 	apiTest();
 	alert(JSON.stringify(myUser));
-};	
+}
 		
-var SignInWhenNotSignedIn_callback = function(GetSomeInfoAboutUser_callback_obj){
+function SignInWhenNotSignedIn_callback(GetSomeInfoAboutUser_callback_obj){
 	if(myCurrentStatus != "connected") login();
 	GetSomeInfoAboutUser_callback_obj();
-};
-	
+}
+function oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback_obj) {
+	myCurrentStatus=getStatus();
+	// Now I run callback function
+	SignInWhenNotSignedIn_callback_obj(GetSomeInfoAboutUser_callback);		
+}
 
 // device APIs are available
     function onDeviceReady() {
 	
 		/* Sprawdzam czy uzytkownik sie zalogowal*/
-		function oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback_obj) {
-			myCurrentStatus=getStatus();
-			// Now I run callback function
-			SignInWhenNotSignedIn_callback_obj();
-			
-		}
+
 		oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback);
 		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
     }
