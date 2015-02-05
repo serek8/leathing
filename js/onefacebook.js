@@ -23,6 +23,14 @@
 						},
                     function (response) { alert("muERROE="+JSON.stringify(response)); }); 
             };
+			var apiGetPicture = function () { 
+                facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
+                    function (response) {
+						myUser.UserImageURL=response.data.url;  
+						myUser.UserIsPictureSet=1;
+						},
+                    function (response) { alert("muERROE="+JSON.stringify(response)); }); 
+            };
             var logPurchase = function () {
                 facebookConnectPlugin.logPurchase(1.99, "USD",
                     function (response) { alert(JSON.stringify(response)); },

@@ -1,7 +1,7 @@
 var slideMapButtonVisibility = 0;
 var panelToChange;
 
-var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserIsSet:0};
+var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserIsSet:0, UserImageURL:"", UserIsPictureSet:0};
 
 
 function onLoad() {
@@ -14,13 +14,23 @@ function GetSomeInfoAboutUser()
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;} 
+			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("newsy").innerHTML=myUser.UserName;} 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();
 	/* Koniec checkVariable */
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-	
+	apiGetPicture();
+		/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
+	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
+		function checkVariable() {
+			if(myUser.UserIsPictureSet==1)		
+			{ document.getElementById("accountImgElement").src=UserImageURL;} 
+			else {setTimeout(checkVariable,100); }
+		}
+		checkVariable();
+	/* Koniec checkVariable */
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 }
 		
 function SignInWhenNotSignedIn(){
@@ -50,7 +60,7 @@ function SignInWhenNotSignedIn(){
 		/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 			function checkVariable() {
 				if(myCurrentStatus=="connected")		{ alert('Zalogowany'); GetSomeInfoAboutUser();} 
-				else if(myCurrentStatus=="undefined")	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
+				else if(myCurrentStatus=="unknown")	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
 				else {setTimeout(checkVariable,100); }
 			}
 			checkVariable();
