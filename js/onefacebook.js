@@ -48,9 +48,11 @@
             }
             
             var getStatus = function () { 
+				var myCurrentStatus; 
                 facebookConnectPlugin.getLoginStatus( 
-                    function (response) { return response.status; },
+                    function (response) { myCurrentStatus=response.status; },
                     function (response) { alert(JSON.stringify(response)) });
+				return myCurrentStatus;
             }
             var logout = function () { 
                 facebookConnectPlugin.logout( 
