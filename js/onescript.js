@@ -14,7 +14,7 @@ function GetSomeInfoAboutUser()
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;();} 
+			if(myUser.UserIsSet==1)		{ alert('Wypisuje info'); document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;} 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();
@@ -50,7 +50,7 @@ function SignInWhenNotSignedIn(){
 		/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 			function checkVariable() {
 				if(myCurrentStatus=="connected")		{ alert('Zalogowany'); GetSomeInfoAboutUser();} 
-				else if(myCurrentStatus=="undefined") 	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
+				else if(myCurrentStatus=="undefined")	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
 				else {setTimeout(checkVariable,100); }
 			}
 			checkVariable();
