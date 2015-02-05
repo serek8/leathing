@@ -10,7 +10,7 @@ function onLoad() {
 
 // device APIs are available
     function onDeviceReady() {
-		alert("jesteem");
+		alert("jesteem a oto getStatus()="+getStatus());
         // Now safe to use device APIs
 		if(getStatus() != 'connected') login();
 		//apiTest();
