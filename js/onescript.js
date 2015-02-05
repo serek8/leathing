@@ -7,16 +7,30 @@ var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0};
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }
+	
+var GetSomeInfoAboutUser_callback = function()
+{
+	apiTest();
+	alert(JSON.stringify(myUser));
+};	
+		
+var SignInWhenNotSignedIn_callback = function(GetSomeInfoAboutUser_callback_obj){
+	if(myCurrentStatus != "connected") login();
+	GetSomeInfoAboutUser_callback_obj();
+};
+	
 
 // device APIs are available
     function onDeviceReady() {
-		function oneFacebookStatusCheckAndSignIn(fun1_callback) {
-			alert("ready| a oto getStatus()="+getStatus());
-			// Now safe to use device APIs
-			fun1_callback();
-			//apiTest();
+	
+		/* Sprawdzam czy uzytkownik sie zalogowal*/
+		function oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback_obj) {
+			myCurrentStatus=getStatus();
+			// Now I run callback function
+			SignInWhenNotSignedIn_callback_obj();
+			
 		}
-		oneFacebookStatusCheckAndSignIn(function(){if(myCurrentStatus != "connected") login();});
+		oneFacebookStatusCheckAndSignIn(SignInWhenNotSignedIn_callback);
 		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
     }
 
