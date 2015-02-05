@@ -50,7 +50,7 @@
             var getStatus = function () { 
 				myCurrentStatus="nic";
                 facebookConnectPlugin.getLoginStatus( 
-                    function (response) { myCurrentStatus=response.status; alert("W funkcji2 getStatus(), return="+JSON.stringify(myCurrentStatus)},
+                    function (response) { myCurrentStatus=response.status; alert("W funkcji2 getStatus(), return="+JSON.stringify(myCurrentStatus))},
                     function (response) { alert(JSON.stringify(response)) });
 					alert("W funkcji getStatus(), return="+JSON.stringify(myCurrentStatus));
 				return myCurrentStatus;
