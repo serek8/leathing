@@ -17,12 +17,15 @@
 <body onload="onLoad();">
 <table id="AccountTopBar">
   <tr>
-    <td><img id="AccountTopBarImgElement" src="" width="40" height="40"></td>
-    <td id="AccountTopBarUserName">Cell B</td>
+    <td><img class="AccountTopBarImgElement" id="AccountTopBarImgElement" onclick="$('AccountTopBarUserName').slideDown();" src="" width="40" height="40"></td>
+    <td id="AccountTopBarUserName"> </td>
   </tr>
 </table>
-
-<div id="googleMap" style="width:100%;height:700px;"></div>
+<div id="AccountSetting" class="AccountSetting">
+jakies tam ustawienia np<br/> 
+<div class="event listening button" onclick="logout(); SignInWhenNotSignedIn();">Logout with Facebook</div>
+</div>
+<div id="googleMap"></div>
 
 <!-- <div class="slidebutton" id="slidebuttonDodaj">Dodaj</div>
 <div id="panelslidebuttonDodaj">Komu chcesz udostepnic ?<br/>..jakas lista.. </div>

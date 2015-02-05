@@ -80,18 +80,16 @@ function SignInWhenNotSignedIn(){
     }
 
 $(document).ready(function(){
-  $(".slidebutton").click(function(){
-	panelToChange="#panel"+(this.id);
-	
-    if(slideMapButtonVisibility == 0){
-		$(panelToChange).slideDown("slow");
-		slideMapButtonVisibility=1;
-	}
-	else{
-	$(panelToChange).slideUp("slow");
-	slideMapButtonVisibility = 0;
-	}
-  });
+  $(".AccountTopBarImgElement").click(function () {
+		if ( $( ".AccountSetting" ).is( ":hidden" ) ) {
+			$( ".AccountSetting" ).slideDown( "slow" );
+			//$( "#googleMap" ).hide();
+		}
+		else {
+			$( ".AccountSetting" ).hide();
+		}  
+	});
+
 });
 
 
