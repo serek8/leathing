@@ -10,11 +10,13 @@ function onLoad() {
 
 // device APIs are available
     function onDeviceReady() {
-		alert("ready| a oto getStatus()="+getStatus());
-		alert("ready"+JSON.stringify(getStatus()));
-        // Now safe to use device APIs
-		if(getStatus() != "connected") login();
-		//apiTest();
+		function oneFacebookStatusCheckAndSignIn(fun1_callback) {
+			alert("ready| a oto getStatus()="+getStatus());
+			// Now safe to use device APIs
+			fun1_callback();
+			//apiTest();
+		}
+		oneFacebookStatusCheckAndSignIn(function(){if(myCurrentStatus() != "connected") login();})
 		document.getElementById("newsy").innerHTML=myUser.UserName+" "+myUser.UserEmail+" "+myUser.UserIdToSignUp;
     }
 
