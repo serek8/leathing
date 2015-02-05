@@ -68,6 +68,8 @@
 			
             var logout = function () { 
                 facebookConnectPlugin.logout( 
-                    function (response) { alert(JSON.stringify(response)); },
-                    function (response) { alert(JSON.stringify(response)); });
+                    function (response) {  },
+                    function (response) {  });
+					myUser.UserIdToSignUp=0;
+					myUser.UserIsSet=0;
             };
