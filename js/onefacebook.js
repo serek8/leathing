@@ -3,8 +3,8 @@
 			
 			var login = function () {
                 facebookConnectPlugin.login( ["public_profile","email"],
-                    function (response) { alert(JSON.stringify(response)) },
-                    function (response) { alert(JSON.stringify(response)) });
+                    function (response) { alert(JSON.stringify(response)); },
+                    function (response) { alert(JSON.stringify(response)); });
             }
             
             var showDialog = function () { 
