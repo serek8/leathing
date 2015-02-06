@@ -34,6 +34,7 @@ logout();
 				myUser.UserIsInfoReceived=0;
 				myUser.UserIdToSignUp=0;
 				myUser.UserImageURL="";
+				document.getElementById("AccountTopBarUserName").innerHTML="leathing.com";
 				SignInWhenNotSignedIn(); 
 			} 
 			else {setTimeout(checkVariable,100); }
@@ -43,9 +44,6 @@ logout();
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 }
-	
-	
-	
 	
 	
 function GetSomeInfoAboutUser()
@@ -90,7 +88,7 @@ function SignInWhenNotSignedIn(){
 		/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 		/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 			function checkVariable() {
-				if(myCurrentStatus=="connected")		{ alert('Zalogowany'); GetSomeInfoAboutUser();} 
+				if(myCurrentStatus=="connected")		{ alert('Zalogowany'); myUser.IsSignedIn=1; GetSomeInfoAboutUser();} 
 				else if(myCurrentStatus=="unknown")	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
 				else {setTimeout(checkVariable,100); }
 			}
