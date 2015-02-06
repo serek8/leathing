@@ -1,13 +1,12 @@
 var slideMapButtonVisibility = 0;
 var panelToChange;
 
-var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserIsSet:0, UserImageURL:"", UserIsPictureSet:0};
+var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserIsInfoReceived:0, UserImageURL:"", UserIsPictureSet:0, IsSignedIn:0};
 
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
-    }
-	
+    }	
 	
 function GetUserPicture()
 {
@@ -24,6 +23,29 @@ function GetUserPicture()
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 }
 	
+function LogOutAndPrepareForSignIn()
+{
+logout();
+	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
+	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
+		function checkVariable() {
+			if(IsSignedIn==0) {
+				myUser.UserName="";
+				myUser.UserIsInfoReceived=0;
+				myUser.UserIdToSignUp=0;
+				myUser.UserImageURL="";
+				SignInWhenNotSignedIn(); 
+			} 
+			else {setTimeout(checkVariable,100); }
+		}
+		checkVariable();
+	/* Koniec checkVariable */
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+
+}
+	
+	
+	
 	
 	
 function GetSomeInfoAboutUser()
@@ -32,7 +54,7 @@ function GetSomeInfoAboutUser()
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myUser.UserIsSet==1)	
+			if(myUser.UserIsInfoReceived==1)	
 				{alert(myUser.UserName); document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName); GetUserPicture();} 
 			else {setTimeout(checkVariable,100); }
 		}
@@ -47,7 +69,7 @@ function SignInWhenNotSignedIn(){
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myCurrentStatus=="connected")		{ alert('Zalogowany'); GetSomeInfoAboutUser();} 
+			if(myCurrentStatus=="connected")		{ alert('Zalogowany'); IsSignedIn=1; GetSomeInfoAboutUser(); } 
 			else {setTimeout(checkVariable,100); }
 		}
 		checkVariable();

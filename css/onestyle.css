@@ -22,7 +22,14 @@ color: #FFFFFF;
 img.AccountTopBarImgElement
 {
 float: left;
+display: table-cell;
+vertical-align: middle;
+}
 
+img.AccountTopBarUserName
+{
+display: table-cell;
+vertical-align: middle;
 }
 
 div.AccountSetting
@@ -43,6 +50,19 @@ text-align:center;
 vertical-align:middle;
 background-color:#e5eecc;
 border:solid 1px #c3c3c3;
+}
+
+#addNewLeathDiv
+{
+position: absolute;
+bottom: 0px;
+width:100%;
+text-align: center ;
+background-color:#8D1919;
+}
+#addNewLeathImg
+{
+
 }
 
 #googleMap

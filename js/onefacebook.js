@@ -19,7 +19,7 @@
 						myUser.UserName=response.name;  
 						myUser.UserIdToSignUp=response.id;
 						myUser.UserEmail=response.email;
-						myUser.UserIsSet=1;
+						myUser.UserIsInfoReceived=1;
 						},
                     function (response) { alert("muERROE="+JSON.stringify(response)); }); 
             };
@@ -68,8 +68,7 @@
 			
             var logout = function () { 
                 facebookConnectPlugin.logout( 
-                    function (response) {  },
-                    function (response) {  });
-					myUser.UserIdToSignUp=0;
-					myUser.UserIsSet=0;
+                    function (response) { myUser.IsSignedIn=0;	},
+                    function (response) { alert("Erroe:onefacebook.js:logout()"); });
+					
             };
