@@ -29,12 +29,16 @@ logout();
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(IsSignedIn==0) {
+			if(myUser.IsSignedIn==0) {
 				myUser.UserName="";
 				myUser.UserIsInfoReceived=0;
+				myUser.UserIsPictureSet=0;
 				myUser.UserIdToSignUp=0;
 				myUser.UserImageURL="";
+				myUser.UserEmail='';
+				$( ".AccountSetting" ).hide();
 				document.getElementById("AccountTopBarUserName").innerHTML="leathing.com";
+				document.getElementById("AccountTopBarImgElement").src='';
 				SignInWhenNotSignedIn(); 
 			} 
 			else {setTimeout(checkVariable,100); }

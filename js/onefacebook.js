@@ -69,6 +69,6 @@
             var logout = function () { 
                 facebookConnectPlugin.logout( 
                     function (response) { myUser.IsSignedIn=0;	},
-                    function (response) { alert("Erroe:onefacebook.js:logout()"); });
+                    function (response) { alert("Erroe:onefacebook.js:logout()"+JSON.stringify(response));});
 					
             };
