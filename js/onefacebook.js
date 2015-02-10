@@ -1,58 +1,57 @@
-			
-			
-			// Funkcja do logowania przez Facebooka
-			// Gdy zalogowany pomysle to uruchamiam funkcje apiGetInfoAfterSignIn
-			// do pobrania podstawowych info o uzytkowniku
+// Natywna czaesc aplikacji do logowania przez Facebooka
 
+// Logowanie - lancuch funkcji odpowiadajacych za logowanie i gromadzenie danych o uzytkowniku
+	var oneFacebookLogin = function () {
+		facebookConnectPlugin.login( ["public_profile","email"],
+			function (response) { oneFacebookApiGetInfoAfterSignIn(); },
+			function (response) { alert("Musisz byc zalogowany aby korzystac z aplikacji"); oneFacebookLogin(); }
+		);
+	};
+	
+	var oneFacebookApiGetInfoAfterSignIn = function () { 
+		facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
+			function (response) {
+				myUser.UserName=response.name;  
+				myUser.UserIdToSignUp=response.id;
+				myUser.UserEmail=response.email;
+				oneFacebookApiGetPicture();
+			},
+			function (response) { alert("Nie moge pobrac podstawowych info o uzytkowniku="+JSON.stringify(response)); myUser.IsSignedIn=0;}
+		); 
+    };	
 			
-			var oneFacebookLogin = function () {
-                facebookConnectPlugin.login( ["public_profile","email"],
-                    function (response) { oneFacebookApiGetInfoAfterSignIn(); },
-                    function (response) { alert("Nie moge sie zalogowac"); navigator.app.exitApp(); });
-            };
- 
-            var oneFacebookApiGetInfoAfterSignIn = function () { 
-                facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
-                    function (response) {
-						myUser.UserName=response.name;  
-						myUser.UserIdToSignUp=response.id;
-						myUser.UserEmail=response.email;
-						oneFacebookApiGetPicture();
-						},
-                    function (response) { alert("Nie moge pobrac podstawowych info o uzytkowniku="+JSON.stringify(response)); myUser.IsSignedIn=0;}); 
-            };	
 			// funkcja uzywana tylko przy logowaniu bo uruchamia kolejne potrzebne do dokonczenia logowania
-			var oneFacebookApiGetPicture = function () { 
-                facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
-                    function (response) {
-						myUser.UserImageURL=response.data.url;  
-						setUserDecsriptionAfterSignIn();
-						},
-                    function (response) { alert("Nie moge pobrac profilowego: "+JSON.stringify(response)); }); 
-            };
+	var oneFacebookApiGetPicture = function () { 
+        facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
+            function (response) {
+				myUser.UserImageURL=response.data.url;  
+				setUserDecsriptionAfterSignIn();
+			},
+            function (response) { alert("Nie moge pobrac profilowego: "+JSON.stringify(response)); }
+		); 
+    };
  
  
-             var oneFacebookGetStatus = function () { 
-                facebookConnectPlugin.getLoginStatus( 
-                    function (response) { 
-						if(response.status=="connected")	{ alert('Byl juz zalogowany przed wejsciem'); oneFacebookApiGetInfoAfterSignIn();}
-						else if(response.status=="unknown")	{ alert('Bede logowal'); oneFacebookLogin(); }
-					},
-                    function (response) { alert(JSON.stringify(response)); });
-            };
+    var oneFacebookGetStatus = function () { 
+        facebookConnectPlugin.getLoginStatus( 
+			function (response) { 
+				if(response.status=="connected")	{ alert('Byl juz zalogowany przed wejsciem'); oneFacebookApiGetInfoAfterSignIn();}
+				else if(response.status=="unknown")	{ alert('Bede logowal'); oneFacebookLogin(); }
+			},
+			function (response) { alert(JSON.stringify(response)); }
+		);
+    };
  
+    var oneFacebookLogout = function () { 
+        facebookConnectPlugin.logout( 
+			function (response) { myUser.IsSignedIn=0; navigator.app.exitApp();},
+            function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany ! Koncze program."); oneFacebookLogin();}
+		);
+	}; 
  
-				
- 
- 
- 
- 
-            var oneFacebookLogout = function () { 
-                facebookConnectPlugin.logout( 
-                    function (response) { myUser.IsSignedIn=0; navigator.app.exitApp();},
-                    function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany ! Koncze program."); navigator.app.exitApp();});
-					
-            }; 
+// Koniec czynnosci do logowania 
+
+
  
 			var login = function () {
                 facebookConnectPlugin.login( ["public_profile","email"],
