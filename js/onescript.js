@@ -2,7 +2,7 @@ var slideMapButtonVisibility = 0;
 var panelToChange;
 var MyCurrentLatitude=0, MyCurrentLongitude=0;
 var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL:"", IsSignedIn:0};
-
+var MainMapObj=null;
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -87,7 +87,7 @@ function onMapSuccess(position) {
 	MyCurrentLongitude=position.coords.longitude;
 	
 	
-	MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
+	if(!MainMapObj) MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
 	
 	myloc.setPosition({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
 	
