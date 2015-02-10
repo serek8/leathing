@@ -80,7 +80,7 @@ function onMapSuccess(position) {
     element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                         'Longitude: ' + position.coords.longitude     + '<br />' +
                         '<hr />'      + element.innerHTML;
-	MainMapObj.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+	myloc.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
 	MainMapObj.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
 }
 
