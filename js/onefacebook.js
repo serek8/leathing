@@ -1,12 +1,67 @@
 			
 			
+			// Funkcja do logowania przez Facebooka
+			// Gdy zalogowany pomysle to uruchamiam funkcje apiGetInfoAfterSignIn
+			// do pobrania podstawowych info o uzytkowniku
+
 			
+			var oneFacebookLogin = function () {
+                facebookConnectPlugin.login( ["public_profile","email"],
+                    function (response) { oneFacebookApiGetInfoAfterSignIn(); },
+                    function (response) { alert("Nie moge sie zalogowac"); navigator.app.exitApp(); });
+            };
+ 
+            var oneFacebookApiGetInfoAfterSignIn = function () { 
+                facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
+                    function (response) {
+						myUser.UserName=response.name;  
+						myUser.UserIdToSignUp=response.id;
+						myUser.UserEmail=response.email;
+						oneFacebookApiGetPicture();
+						},
+                    function (response) { alert("Nie moge pobrac podstawowych info o uzytkowniku="+JSON.stringify(response)); myUser.IsSignedIn=0;}); 
+            };	
+			// funkcja uzywana tylko przy logowaniu bo uruchamia kolejne potrzebne do dokonczenia logowania
+ 			var oneFacebookApiGetPicture = function () { 
+                facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
+                    function (response) {
+						myUser.UserImageURL=response.data.url;  
+						setUserDecsriptionAfterSignIn();
+						},
+                    function (response) { alert("Nie moge pobrac profilowego: "+JSON.stringify(response)); }); 
+            };
+ 
+ 
+             var oneFacebookGetStatus = function () { 
+                facebookConnectPlugin.getLoginStatus( 
+                    function (response) { 
+						if(response.status=="connected")	{ alert('Byl juz zalogowany przed wejsciem'); oneFacebookApiGetInfoAfterSignIn();}
+						else if(myCurrentStatus=="unknown")	{ alert('Bede logowal'); oneFacebookLogin(); }
+					},
+                    function (response) { alert(JSON.stringify(response)); });
+				return myCurrentStatus;
+            };
+ 
+ 
+				
+ 
+ 
+ 
+ 
+            var oneFacebookLogout = function () { 
+                facebookConnectPlugin.logout( 
+                    function (response) { myUser.IsSignedIn=0; navigator.app.exitApp();},
+                    function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany ! Koncze program."); navigator.app.exitApp();});
+					
+            }; 
+ 
 			var login = function () {
                 facebookConnectPlugin.login( ["public_profile","email"],
-                    function (response) { /*alert(JSON.stringify(response));*/ },
-                    function (response) { alert(JSON.stringify(response)); });
-            };
-            
+                    function (response) { apiGetInfoAfterSignIn(); },
+                    function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany ! Koncze program."); navigator.app.exitApp(); });
+            }; 
+ 
+ 
             var showDialog = function () { 
                 facebookConnectPlugin.showDialog( { method: "feed" }, 
                     function (response) { alert(JSON.stringify(response)); },
@@ -23,14 +78,11 @@
 						},
                     function (response) { alert("muERROE="+JSON.stringify(response)); }); 
             };
-			var apiGetPicture = function () { 
-                facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
-                    function (response) {
-						myUser.UserImageURL=response.data.url;  
-						myUser.UserIsPictureSet=1;
-						},
-                    function (response) { alert("muERROE="+JSON.stringify(response)); }); 
-            };
+
+
+		
+			
+			
             var logPurchase = function () {
                 facebookConnectPlugin.logPurchase(1.99, "USD",
                     function (response) { alert(JSON.stringify(response)); },
@@ -69,6 +121,6 @@
             var logout = function () { 
                 facebookConnectPlugin.logout( 
                     function (response) { myUser.IsSignedIn=0;	},
-                    function (response) { alert("Erroe:onefacebook.js:logout()"+JSON.stringify(response));});
+                    function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany ! Koncze program."); navigator.app.exitApp();});
 					
             };

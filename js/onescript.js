@@ -48,6 +48,12 @@ logout();
 	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 }
+
+function setUserDecsriptionAfterSignIn()
+{
+	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
+	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
+}	
 	
 	
 function GetSomeInfoAboutUser()
@@ -84,23 +90,7 @@ function SignInWhenNotSignedIn(){
 // device APIs are available
     function onDeviceReady() {
 	
-		/* Sprawdzam czy uzytkownik sie zalogowal i przypisuje		*/
-		/*  wynik zmiennej 'myCurrentStatus' sa mozliwe				*/
-		/*  dwie wartosci tej zmiennej: 'connected' i 'undefinied'	*/
-		getStatus(); 
-		
-		/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
-		/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
-			function checkVariable() {
-				if(myCurrentStatus=="connected")		{ alert('Zalogowany'); myUser.IsSignedIn=1; GetSomeInfoAboutUser();} 
-				else if(myCurrentStatus=="unknown")	{ alert('Bede logowal'); SignInWhenNotSignedIn(); }
-				else {setTimeout(checkVariable,100); }
-			}
-			checkVariable();
-		/* Koniec checkVariable */
-		/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-		
-		
+		oneFacebookGetStatus();
     }
 
 $(document).ready(function(){

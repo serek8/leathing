@@ -27,6 +27,7 @@
 		<param name="APP_ID" value="769021013181466" />
 		<param name="APP_NAME" value="leathing.com" />
 	</gap:plugin>
+	<gap:plugin name="org.apache.cordova.Storage" />
     <gap:plugin name="org.apache.cordova.media-capture" />
     <gap:plugin name="org.apache.cordova.console" />
     <gap:plugin name="org.apache.cordova.device" />
