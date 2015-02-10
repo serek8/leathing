@@ -44,24 +44,17 @@ $(document).ready(function(){
 
 function initialize()
 {
-var MyLocationCoordinates = new google.maps.LatLng(MyCurrentLatitude, MyCurrentLongitude);
 var mapProp = {
   zoom:5,
-  center: MyLocationCoordinates,
   mapTypeId:google.maps.MapTypeId.ROADMAP
   };
+  
 MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-myloc = new google.maps.Marker({
-    clickable: false,
-    icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
-                                                    new google.maps.Size(22,22),
-                                                    new google.maps.Point(0,18),
-                                                    new google.maps.Point(11,11)),
-    shadow: null,
-    zIndex: 999,
-    map: MainMapObj
-});
+var myloc = new google.maps.Marker({
+      map: MainMapObj,
+      title: 'Hello World!'
+	});
 
 // Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
 
@@ -86,10 +79,10 @@ function onMapSuccess(position) {
 	MyCurrentLatitude=position.coords.latitude;
 	MyCurrentLongitude=position.coords.longitude;
 	
-	if(MyCurrentLatitude === 0 && MyCurrentLongitude === 0) {
-		MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
-	}
-	myloc.setPosition(new google.maps.LatLng(MyCurrentLatitude, MyCurrentLongitude));
+	
+	MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
+	
+	myloc.setPosition({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
 	
 	
 	
