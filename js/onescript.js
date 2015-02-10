@@ -2,7 +2,7 @@ var slideMapButtonVisibility = 0;
 var panelToChange;
 var MyCurrentLatitude=0, MyCurrentLongitude=0;
 var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL:"", IsSignedIn:0};
-var MainMapObj=null;
+var MainMapObj=0;
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -22,7 +22,6 @@ function setUserDecsriptionAfterSignIn() {
 	
 		oneFacebookGetStatus();
 		//google.maps.event.addDomListener(window, 'load', initialize);
-		initialize();
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 30000 });
     }
 
@@ -66,7 +65,7 @@ function initialize()
 // Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
 
 }
-
+google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
@@ -87,7 +86,7 @@ function onMapSuccess(position) {
 	MyCurrentLongitude=position.coords.longitude;
 	
 	
-	if(!MainMapObj) MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
+	if(!MainMapObj){ MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});}
 	
 	myloc.setPosition({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
 	
