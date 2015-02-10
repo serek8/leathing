@@ -38,24 +38,29 @@ $(document).ready(function(){
 });
 
 
-/* Skrypt do mapy */
-var myCenter=new google.maps.LatLng(51.508742,-0.120850);
+/* API dla GOOGLE MAPS Skrypt do mapy */
+
+
 function initialize()
 {
-var mapProp = {
-  center:myCenter,
-  zoom:5,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
 
-var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-var marker=new google.maps.Marker({
-  position:myCenter,
-  });
+myloc = new google.maps.Marker({
+    clickable: false,
+    icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+                                                    new google.maps.Size(22,22),
+                                                    new google.maps.Point(0,18),
+                                                    new google.maps.Point(11,11)),
+    shadow: null,
+    zIndex: 999,
+    map: MainMapObj
+});
 
-marker.setMap(map);
+// Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
+watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 30000 });
 }
+
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
@@ -72,6 +77,7 @@ function onMapSuccess(position) {
     element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                         'Longitude: ' + position.coords.longitude     + '<br />' +
                         '<hr />'      + element.innerHTML;
+						MainMapObj.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
 }
 
 // onError Callback receives a PositionError object
@@ -80,4 +86,3 @@ function onMapError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
-var watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 30000 });

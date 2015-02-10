@@ -44,8 +44,8 @@
  
     var oneFacebookLogout = function () { 
         facebookConnectPlugin.logout( 
-			function (response) { myUser.IsSignedIn=0; navigator.app.exitApp();},
-            function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany ! Koncze program."); oneFacebookLogin();}
+			function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany !"); oneFacebookLogin();},
+            function (response) { alert("Blad przy wylogowywaniu"); oneFacebookLogin();}
 		);
 	}; 
  
