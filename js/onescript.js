@@ -43,7 +43,10 @@ $(document).ready(function(){
 
 function initialize()
 {
-
+var mapProp = {
+  zoom:5,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
 MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
 myloc = new google.maps.Marker({
@@ -77,7 +80,8 @@ function onMapSuccess(position) {
     element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                         'Longitude: ' + position.coords.longitude     + '<br />' +
                         '<hr />'      + element.innerHTML;
-						MainMapObj.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+	MainMapObj.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
+	MainMapObj.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
 }
 
 // onError Callback receives a PositionError object
