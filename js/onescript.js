@@ -29,7 +29,7 @@ logout();
 	/* * * * * * * * * SABLON * * * * * * * * * * * * * * * * * * * * * * */
 	/* checkVariable(FinalFunction_obj) -> UWAGA ZMIEN WARTOSCI PRZY 'if' */
 		function checkVariable() {
-			if(myUser.IsSignedIn==0) {
+			if(myUser.IsSignedIn===0) {
 				myUser.UserName="";
 				myUser.UserIsInfoReceived=0;
 				myUser.UserIsPictureSet=0;
@@ -53,6 +53,7 @@ function setUserDecsriptionAfterSignIn()
 {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
+	myUser.IsSignedIn=1;
 }	
 	
 	

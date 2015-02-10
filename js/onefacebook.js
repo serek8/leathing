@@ -22,7 +22,7 @@
                     function (response) { alert("Nie moge pobrac podstawowych info o uzytkowniku="+JSON.stringify(response)); myUser.IsSignedIn=0;}); 
             };	
 			// funkcja uzywana tylko przy logowaniu bo uruchamia kolejne potrzebne do dokonczenia logowania
- 			var oneFacebookApiGetPicture = function () { 
+			var oneFacebookApiGetPicture = function () { 
                 facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
                     function (response) {
 						myUser.UserImageURL=response.data.url;  
@@ -36,10 +36,9 @@
                 facebookConnectPlugin.getLoginStatus( 
                     function (response) { 
 						if(response.status=="connected")	{ alert('Byl juz zalogowany przed wejsciem'); oneFacebookApiGetInfoAfterSignIn();}
-						else if(myCurrentStatus=="unknown")	{ alert('Bede logowal'); oneFacebookLogin(); }
+						else if(response.status=="unknown")	{ alert('Bede logowal'); oneFacebookLogin(); }
 					},
                     function (response) { alert(JSON.stringify(response)); });
-				return myCurrentStatus;
             };
  
  
