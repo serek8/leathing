@@ -35,8 +35,8 @@
     var oneFacebookGetStatus = function () { 
         facebookConnectPlugin.getLoginStatus( 
 			function (response) { 
-				if(response.status=="connected")	{ alert('Byl juz zalogowany przed wejsciem'); oneFacebookApiGetInfoAfterSignIn();}
-				else if(response.status=="unknown")	{ alert('Bede logowal'); oneFacebookLogin(); }
+				if(response.status=="connected")	{ oneFacebookApiGetInfoAfterSignIn();}
+				else if(response.status=="unknown")	{ oneFacebookLogin(); }
 			},
 			function (response) { alert(JSON.stringify(response)); }
 		);
@@ -44,7 +44,7 @@
  
     var oneFacebookLogout = function () { 
         facebookConnectPlugin.logout( 
-			function (response) { alert("Aby uzywaz aplikacji musisz byc zalogowany !"); oneFacebookLogin();},
+			function (response) { oneFacebookLogin();},
             function (response) { alert("Blad przy wylogowywaniu"); oneFacebookLogin();}
 		);
 	}; 

@@ -1,6 +1,6 @@
 var slideMapButtonVisibility = 0;
 var panelToChange;
-
+var MyCurrentLatitude=0, MyCurrentLongitude=0;
 var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL:"", IsSignedIn:0};
 
 
@@ -21,6 +21,7 @@ function setUserDecsriptionAfterSignIn() {
     function onDeviceReady() {
 	
 		oneFacebookGetStatus();
+		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 5000 });
     }
 
 $(document).ready(function(){
@@ -45,6 +46,7 @@ function initialize()
 {
 var mapProp = {
   zoom:5,
+  center: {MyCurrentLatitude, MyCurrentLongitude},
   mapTypeId:google.maps.MapTypeId.ROADMAP
   };
 MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
@@ -61,7 +63,7 @@ myloc = new google.maps.Marker({
 });
 
 // Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
-watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 30000 });
+
 }
 
 
@@ -80,8 +82,13 @@ function onMapSuccess(position) {
     element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
                         'Longitude: ' + position.coords.longitude     + '<br />' +
                         '<hr />'      + element.innerHTML;
-	myloc.setPosition({lat: position.coords.latitude, lng: position.coords.longitude});
-	MainMapObj.setCenter({lat: position.coords.latitude, lng: position.coords.longitude});
+	MyCurrentLatitude=position.coords.latitude;
+	MyCurrentLongitude=position.coords.longitude;
+	if(MyCurrentLatitude === 0 && MyCurrentLongitude==0) {MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude}); }
+	myloc.setPosition({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
+	myloc.setMap(MainMapObj);
+	
+	
 }
 
 // onError Callback receives a PositionError object
