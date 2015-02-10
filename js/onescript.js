@@ -21,6 +21,8 @@ function setUserDecsriptionAfterSignIn() {
     function onDeviceReady() {
 	
 		oneFacebookGetStatus();
+		//google.maps.event.addDomListener(window, 'load', initialize);
+		initialize();
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 30000 });
     }
 
@@ -44,7 +46,7 @@ $(document).ready(function(){
 
 function initialize()
 {
-	var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	var myLatlng = new google.maps.LatLng(0,0);
 	var mapProp = {
 		zoom:5,
 		mapTypeId:google.maps.MapTypeId.ROADMAP
@@ -55,7 +57,10 @@ function initialize()
 	myloc = new google.maps.Marker({
 		map: MainMapObj,
 		position: myLatlng,
-		title: 'Hello World!'
+		icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+                                                    new google.maps.Size(22,22),
+                                                    new google.maps.Point(0,18),
+                                                    new google.maps.Point(11,11))
 	});
 
 // Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
@@ -63,7 +68,7 @@ function initialize()
 }
 
 
-google.maps.event.addDomListener(window, 'load', initialize);
+
 
 /* Koniec skryptu mapy */
 
