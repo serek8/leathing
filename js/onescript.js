@@ -52,7 +52,7 @@ function initialize()
   
 	MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-	var myloc = new google.maps.Marker({
+	myloc = new google.maps.Marker({
 		map: MainMapObj,
 		position: myLatlng,
 		title: 'Hello World!'
