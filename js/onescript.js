@@ -44,16 +44,18 @@ $(document).ready(function(){
 
 function initialize()
 {
-var mapProp = {
-  zoom:5,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
+	var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+	var mapProp = {
+		zoom:5,
+		mapTypeId:google.maps.MapTypeId.ROADMAP
+	};
   
-MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-var myloc = new google.maps.Marker({
-      map: MainMapObj,
-      title: 'Hello World!'
+	var myloc = new google.maps.Marker({
+		map: MainMapObj,
+		position: myLatlng,
+		title: 'Hello World!'
 	});
 
 // Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
