@@ -52,7 +52,9 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
     };
     MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 	myloc = new google.maps.Marker({
-		position: myCurrentLatIng
+		position: myCurrentLatIng,
+		map: MainMapObj,
+		image: 'http://i.stack.imgur.com/orZ4x.png'
 	});
 	MainMapObjFlag = 1;
 }
