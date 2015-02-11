@@ -46,13 +46,13 @@ function initialize() {
 var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
     var mapOptions = {
         center: myCurrentLatIng,
-        zoom: 8
+        zoom: 4
     };
     MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 	myloc = new google.maps.Marker({
 		position: myCurrentLatIng,
 		map: MainMapObj,
-		icon: 'res/icon/maps/myloc.png'
+		icon: '/res/icon/maps/myloc.png'
 	});
 	MainMapObjFlag = 1;
 }
