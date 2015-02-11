@@ -54,7 +54,7 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
 	myloc = new google.maps.Marker({
 		position: myCurrentLatIng,
 		map: MainMapObj,
-		image: 'http://i.stack.imgur.com/orZ4x.png'
+		image: 'res/icon/maps/myloc.png'
 	});
 	MainMapObjFlag = 1;
 }
