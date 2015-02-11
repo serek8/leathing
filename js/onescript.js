@@ -76,13 +76,9 @@ function onMapSuccess(position) {
 	MyCurrentLatitude=position.coords.latitude;
 	MyCurrentLongitude=position.coords.longitude;
 	
+	if(MainMapObjFlag===1){ MainMapObj.setCenter(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude); MainMapObjFlag=2;}
 	
-	if(MainMapObjFlag===1){ MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude}); MainMapObjFlag=2;}
-	
-	myloc.setPosition({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
-	
-	
-	
+	if(MainMapObjFlag===2) myloc.setPosition(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude));
 }
 
 // onError Callback receives a PositionError object
