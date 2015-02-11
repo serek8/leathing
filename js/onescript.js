@@ -51,10 +51,11 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
         zoom: 8
     };
     MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+	var image = '../res/icon/maps/myloc.png';
 	myloc = new google.maps.Marker({
 		position: myCurrentLatIng,
 		map: MainMapObj,
-		image: 'res/icon/maps/myloc.png'
+		icon: '../res/icon/maps/myloc.png'
 	});
 	MainMapObjFlag = 1;
 }
