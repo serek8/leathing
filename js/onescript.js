@@ -2,7 +2,7 @@ var slideMapButtonVisibility = 0;
 var panelToChange;
 var MyCurrentLatitude=0, MyCurrentLongitude=0;
 var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL:"", IsSignedIn:0};
-var MainMapObj=0;
+var MainMapObjFlag=0;
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -45,21 +45,21 @@ $(document).ready(function(){
 
 function initialize()
 {
-	var myLatlng = new google.maps.LatLng(0,0);
+	var myLatlng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
 	var mapProp = {
 		zoom:5,
 		mapTypeId:google.maps.MapTypeId.ROADMAP
 	};
   
 	MainMapObj=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
+	
 	myloc = new google.maps.Marker({
 		map: MainMapObj,
-		position: myLatlng,
-		icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+		position: myLatlng
+		/*icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
                                                     new google.maps.Size(22,22),
                                                     new google.maps.Point(0,18),
-                                                    new google.maps.Point(11,11))
+                                                    new google.maps.Point(11,11))*/
 	});
 
 // Dopiero tutaj inicjalizuje geolokalizacje zeby nie podac za wczesnie wspolrzednych
@@ -86,7 +86,7 @@ function onMapSuccess(position) {
 	MyCurrentLongitude=position.coords.longitude;
 	
 	
-	if(!MainMapObj){ MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});}
+	//if(!MainMapObj){ MainMapObj.setCenter({lat: MyCurrentLatitude, lng: MyCurrentLongitude});}
 	
 	myloc.setPosition({lat: MyCurrentLatitude, lng: MyCurrentLongitude});
 	
