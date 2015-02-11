@@ -76,7 +76,7 @@ function onMapSuccess(position) {
 	MyCurrentLatitude=position.coords.latitude;
 	MyCurrentLongitude=position.coords.longitude;
 	
-	if(MainMapObjFlag===1){ MainMapObj.setCenter(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude); MainMapObjFlag=2;}
+	if(MainMapObjFlag===1){MainMapObjFlag=2; MainMapObj.setCenter(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude)); }
 	
 	if(MainMapObjFlag===2) myloc.setPosition(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude));
 }
