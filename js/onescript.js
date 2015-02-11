@@ -1,9 +1,7 @@
-var slideMapButtonVisibility = 0;
-var panelToChange;
 var MyCurrentLatitude = 0;
 var MyCurrentLongitude = 0;
 var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
-var MainMapObjFlag = 0;
+var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
@@ -51,11 +49,10 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
         zoom: 8
     };
     MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
-	var image = '../res/icon/maps/myloc.png';
 	myloc = new google.maps.Marker({
 		position: myCurrentLatIng,
 		map: MainMapObj,
-		icon: '../res/icon/maps/myloc.png'
+		icon: 'res/icon/maps/myloc.png'
 	});
 	MainMapObjFlag = 1;
 }
