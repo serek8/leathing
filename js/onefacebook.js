@@ -20,7 +20,7 @@
 		); 
     };	
 			
-			// funkcja uzywana tylko przy logowaniu bo uruchamia kolejne potrzebne do dokonczenia logowania
+// funkcja uzywana tylko przy logowaniu bo uruchamia kolejne potrzebne do dokonczenia logowania
 	var oneFacebookApiGetPicture = function () { 
         facebookConnectPlugin.api( "me/picture?redirect=false", ["public_profile"],
             function (response) {

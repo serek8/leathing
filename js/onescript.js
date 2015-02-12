@@ -47,7 +47,7 @@ function initialize() {
 var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
     var mapOptions = {
         center: myCurrentLatIng,
-        zoom: 10
+        zoom: 14
     };
     MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 	myloc = new google.maps.Marker({
