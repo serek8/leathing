@@ -21,7 +21,8 @@ function setUserDecsriptionAfterSignIn() {
 	
 		oneFacebookGetStatus();
 		//google.maps.event.addDomListener(window, 'load', initialize);
-		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
+		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 0, timeout: 5000, enableHighAccuracy: true });
+		initialize();
     }
 
 $(document).ready(function(){
@@ -56,7 +57,7 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
 	});
 	MainMapObjFlag = 1;
 }
-google.maps.event.addDomListener(window, 'load', initialize);
+//google.maps.event.addDomListener(window, 'load', initialize);
 
 
 
