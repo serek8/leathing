@@ -21,7 +21,7 @@ function setUserDecsriptionAfterSignIn() {
 	
 		oneFacebookGetStatus();
 		//google.maps.event.addDomListener(window, 'load', initialize);
-		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { timeout: 30000 });
+		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true });
     }
 
 $(document).ready(function(){
