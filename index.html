@@ -25,11 +25,11 @@
 <div data-role="page" id="pageone"> <!-- TEST -->
 
 
-	<table id="AccountTopBar">
+	<table class="AccountTopBar" id="AccountTopBar">
 	<tr>
 		<td>
-			<a href="#pagetwo" data-transition="slide">
-				<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" onclick="$('AccountTopBarUserName').slideDown();" src="" width="40" height="40"></td>
+			<a href="#pagetwo">
+				<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" src="" width="40" height="40"></td>
 			</a>
 		<td id="AccountTopBarUserName">leathing.com</td>
 	</tr>
@@ -39,17 +39,17 @@
 	<div id="googleMap"></div>
 	
 	<div id="addNewLeathDiv" style="display: table-cell; vertical-align: middle;" onclick="alert('A ni chuja dodasz jeszcze...!');">
-		<img id="addNewLeathImg" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/add_square_button-512.png" width="50px" height="50px">
+		<img id="addNewLeathImg" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/add_square_button-512.png" width="45px" height="45px">
 	</div>
 </div>      <!-- TEST -->
 <div data-role="page" id="pagetwo">
-	<table id="AccountTopBar">
+	<table class="AccountTopBar">
 	<tr>
 		<td>
-			<a href="#pageone" data-transition="slide">
-				<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" onclick="$('AccountTopBarUserName').slideDown();" src="" width="40" height="40"></td>
+			<a href="#pageone">
+				<img src="res/icon/map_pin.jpg" style="float: left;" width="40" height="40"></td>
 			</a>
-		<td id="AccountTopBarUserName">leathing.com</td>
+		<td id="AccountTopBarUserName">Profil</td>
 	</tr>
 	</table>
 	<div id="AccountSetting" class="AccountSetting">
