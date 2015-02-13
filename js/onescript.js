@@ -3,6 +3,11 @@ var MyCurrentLongitude = 0;
 var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
 var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 
+function cutDomainOwnCodeFromJSON(arg){
+
+return arg.substr(0, arg.indexOf('<!--'));
+}
+
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }	
@@ -111,7 +116,4 @@ function onMapError(error) {
           'message: ' + error.message + '\n');
 }
 
-function cutDomainOwnCodeFromJSON(arg){
 
-return arg.substr(0, a.indexOf('<!--'));
-}
