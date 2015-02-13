@@ -18,6 +18,7 @@ function setUserDecsriptionAfterSignIn() {
         UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
     },
     function(data, status){
+		alert(data);
         alert(cutDomainOwnCodeFromJSON(data));
 		alert( JSON.parse(data).FeedbackAlert );
     });
