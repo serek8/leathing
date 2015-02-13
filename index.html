@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>leavething.com</title>
 <link rel="stylesheet" href="css/onestyle.css">
-<!-- <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css"> -->
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCz10XHPBNcSFzgqSCBfyGPv5BAMLRejHs"></script>
 <script src="js/onescript.js"></script>
@@ -15,29 +15,47 @@
 <script src="facebook-js-sdk.js"></script > 
 
 <script src="js/jquery-2.1.3.min.js"></script>
-<!-- <script src="js/jquery.mobile-1.4.5.min.js"></script> -->
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
 </head>
 
 <body onload="onLoad();">
-<table id="AccountTopBar">
-  <tr>
-    <td><img class="AccountTopBarImgElement" id="AccountTopBarImgElement" onclick="$('AccountTopBarUserName').slideDown();" src="" width="40" height="40"></td>
-    <td id="AccountTopBarUserName">leathing.com</td>
-  </tr>
-</table>
-<div id="AccountSetting" class="AccountSetting">
-	jakies tam ustawienia np<br/> 
-	<button type="button" onclick="oneFacebookLogout();">Logout</button>
-	<div id="lokalizacjaTest">...</div>
+<!-- TOP SECTION - HEADER -->
+<div data-role="page" id="pageone"> <!-- TEST -->
+
+
+	<table id="AccountTopBar">
+	<tr>
+		<td>
+			<a href="#pagetwo" data-transition="slide">
+				<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" onclick="$('AccountTopBarUserName').slideDown();" src="" width="40" height="40"></td>
+			</a>
+		<td id="AccountTopBarUserName">leathing.com</td>
+	</tr>
+	</table>
+
+	<!-- MIDDLE SECTION -  -->
+	<div id="googleMap"></div>
+	
+	<div id="addNewLeathDiv" style="display: table-cell; vertical-align: middle;" onclick="alert('A ni chuja dodasz jeszcze...!');">
+		<img id="addNewLeathImg" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/add_square_button-512.png" width="50px" height="50px">
+	</div>
+</div>      <!-- TEST -->
+<div data-role="page" id="pagetwo">
+	<table id="AccountTopBar">
+	<tr>
+		<td>
+			<a href="#pageone" data-transition="slide">
+				<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" onclick="$('AccountTopBarUserName').slideDown();" src="" width="40" height="40"></td>
+			</a>
+		<td id="AccountTopBarUserName">leathing.com</td>
+	</tr>
+	</table>
+	<div id="AccountSetting" class="AccountSetting">
+		jakies tam ustawienia np<br/> 
+		<button type="button" onclick="oneFacebookLogout();">Logout</button>
+		<div id="lokalizacjaTest">...</div>
+	</div>
 </div>
-<div id="googleMap"></div>
-
-<div id="addNewLeathDiv" style="display: table-cell; vertical-align: middle;" onclick="alert('A ni chuja dodasz jeszcze...!');">
-	<img id="addNewLeathImg" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/add_square_button-512.png" width="50px" height="50px">
-</div>
-       
-
-
 
 
 

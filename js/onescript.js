@@ -20,11 +20,14 @@ function setUserDecsriptionAfterSignIn() {
     function onDeviceReady() {
 	
 		oneFacebookGetStatus();
-		//google.maps.event.addDomListener(window, 'load', initialize);
+		MapInitialize();
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
-		initialize();
     }
-
+////
+$( document ).on( "vclick", ".AccountTopBarImgElement", function() {
+  $( this ).append( "<span style='color:#108040;'> vclick fired... </span>" );
+  });
+////
 $(document).ready(function(){
   $(".AccountTopBarImgElement").click(function () {
 		if ( $( ".AccountSetting" ).is( ":hidden" ) ) {
@@ -43,11 +46,11 @@ $(document).ready(function(){
 /* API dla GOOGLE MAPS Skrypt do mapy */
 
 
-function initialize() {
+function MapInitialize() {
 var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
     var mapOptions = {
         center: myCurrentLatIng,
-        zoom: 14
+        zoom: 15
     };
     MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
 	myloc = new google.maps.Marker({
