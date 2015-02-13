@@ -1,6 +1,6 @@
 var MyCurrentLatitude = 0;
 var MyCurrentLongitude = 0;
-var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
+var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdUsedToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
 var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 
@@ -20,12 +20,12 @@ function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
 	alert("moj user to: "+JSON.stringify(myUser));
 	/**
-	Wysylem zapytanie AJAX czy user o podanym UserIdUsedToSignIn istnieje
+	Wysylem zapytanie AJAX czy user o podanym UserIdUsedToSignUp istnieje
 	*/
 	$.post(LeathingAjaxURL,
     {
 		RequestMethodId : 1, // id logowania
-        UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
+        UserIdUsedToSignUp: myUser.UserIdUsedToSignUp
     },
     function(data, status){
 		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
@@ -37,7 +37,7 @@ function setUserDecsriptionAfterSignIn() {
 			$.post(LeathingAjaxURL,
 			{
 				RequestMethodId : 2, // id rejestrowania w bazie danych na serwerze q po rejestracji AJAX przysyla dane jak przy logowaniu
-				UserIdUsedToSignIn: myUser.UserIdUsedToSignIn,
+				UserIdUsedToSignUp: myUser.UserIdUsedToSignUp,
 				UserName: myUser.UserName,
 				UserEmail: myUser.UserEmail
 			},
@@ -74,7 +74,7 @@ $(document).on("pagecreate","#pageone",function(){
 	$.support.cors = true;
 	$.post("http://serek8.webatu.com/leathing.php",
 			{
-				UserIdUsedToSignIn: 2
+				UserIdUsedToSignUp: 2
 			},
 			function(data, status){
 				alert("AJAX");

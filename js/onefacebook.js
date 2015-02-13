@@ -12,7 +12,7 @@
 		facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
 			function (response) {
 				myUser.UserName=response.name;  
-				myUser.UserIdToSignUp=response.id;
+				myUser.UserIdUsedToSignUp=response.id;
 				myUser.UserEmail=response.email;
 				oneFacebookApiGetPicture();
 			},
@@ -70,7 +70,7 @@
                 facebookConnectPlugin.api( "me?fields=id,email,name", ["public_profile"],
                     function (response) {
 						myUser.UserName=response.name;  
-						myUser.UserIdToSignUp=response.id;
+						myUser.UserIdUsedToSignUp=response.id;
 						myUser.UserEmail=response.email;
 						myUser.UserIsInfoReceived=1;
 						},
