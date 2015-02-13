@@ -73,10 +73,6 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
 //   the current GPS coordinates
 //
 function onMapSuccess(position) {
-    var element = document.getElementById('lokalizacjaTest');
-    element.innerHTML = 'Latitude: '  + position.coords.latitude      + '<br />' +
-                        'Longitude: ' + position.coords.longitude     + '<br />' +
-                        '<hr />'      + element.innerHTML;
 	MyCurrentLatitude=position.coords.latitude;
 	MyCurrentLongitude=position.coords.longitude;
 	
