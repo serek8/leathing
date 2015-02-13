@@ -36,14 +36,15 @@ function setUserDecsriptionAfterSignIn() {
 		//
 			$.post(LeathingAjaxURL,
 			{
-				RequestMethodId : 2, // id rejestrowania w bazie danych na serwerze
+				RequestMethodId : 2, // id rejestrowania w bazie danych na serwerze q po rejestracji AJAX przysyla dane jak przy logowaniu
 				UserIdUsedToSignIn: myUser.UserIdUsedToSignIn,
 				UserName: myUser.UserName,
 				UserEmail: myUser.UserEmail
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-				if((jsonObj.FeedbackAlert !== 0)) alert('BLAD6'); 
+				alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
+				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD6'); }
 				myUser.UserId=jsonObj.FeedbackObj.UserId;
 				alert("tworze-id uzytkownika: "+jsonObj.FeedbackObj.UserId);
 			});
