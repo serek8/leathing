@@ -18,7 +18,7 @@ function onLoad() {
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
-	
+	alert("moj user to: "+JSON.parse(myUser));
 	/**
 	Wysylem zapytanie AJAX czy user o podanym UserIdUsedToSignIn istnieje
 	*/
