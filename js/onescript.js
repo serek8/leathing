@@ -25,7 +25,8 @@ function setUserDecsriptionAfterSignIn() {
     function(data, status){
 		alert(data);
         alert(cutDomainOwnCodeFromJSON(data));
-		alert( JSON.parse(data).FeedbackAlert );
+		var jsonObj = JSON.parse(data)
+		alert( jsonObj.FeedbackAlert );
     });
 	myUser.IsSignedIn=1;
 }	
