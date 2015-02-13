@@ -1,7 +1,8 @@
 var MyCurrentLatitude = 0;
 var MyCurrentLongitude = 0;
-var myUser = {UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
+var myUser = {UserId=0, UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
 var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
+var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 
 function cutDomainOwnCodeFromJSON(arg){
 
@@ -17,16 +18,41 @@ function onLoad() {
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
-	$.post("http://serek8.webatu.com/leathing.php",
+	
+	/**
+	Wysylem zapytanie AJAX czy user o podanym UserIdUsedToSignIn istnieje
+	*/
+	$.post(LeathingAjaxURL,
     {
 		RequestMethodId : 1, // id logowania
         UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
     },
     function(data, status){
-		alert(data);
-        alert(cutDomainOwnCodeFromJSON(data));
 		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-		alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
+		//alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
+		myUser.UserId=jsonObj.FeedbackObj.UserId;
+		if(jsonObj.FeedbackAlert === 1) { /* Jezeli taki uzytkownik nie istnieje to utworz go w bazie danych */
+		
+		//
+			$.post(LeathingAjaxURL,
+			{
+				RequestMethodId : 2, // id rejestrowania w bazie danych na serwerze
+				UserIdUsedToSignIn: myUser.UserIdUsedToSignIn,
+				UserName: myUser.UserName,
+				UserEmail: myUser.UserEmail
+			},
+			function(data, status){
+				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+				if((jsonObj.FeedbackAlert !== 0)) alert('BLAD6'); 
+				myUser.UserId=jsonObj.FeedbackObj.UserId;
+				alert("tworze-id uzytkownika: "+jsonObj.FeedbackObj.UserId);
+			});
+		
+		
+		
+		}
+		alert("id uzytkownika: "+jsonObj.FeedbackObj.UserId);
+		
     });
 	myUser.IsSignedIn=1;
 }	
@@ -54,22 +80,6 @@ $(document).on("pagecreate","#pageone",function(){
 	});
   });                       
 });
-
-
-
-/*$(document).on("pagecreate","#pageone",function(){
-  $("#addNewLeathDiv").on("tap",function(){
-    alert("You swiped right!");
-		/*$.post("http://serek8.webatu.com/leathing.php",
-			{
-				UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
-			},
-			function(data, status){
-				alert("Data: " + data + "\nStatus: " + status);
-			});*/
-	//});
-  //});
-////
 
 
 /* API dla GOOGLE MAPS Skrypt do mapy */
