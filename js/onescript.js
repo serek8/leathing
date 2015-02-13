@@ -19,7 +19,7 @@ function setUserDecsriptionAfterSignIn() {
     },
     function(data, status){
         alert(cutDomainOwnCodeFromJSON(data));
-		alert( JSON.parse(data).FeedbackAlert; )
+		alert( JSON.parse(data).FeedbackAlert );
     });
 	myUser.IsSignedIn=1;
 }	
