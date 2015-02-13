@@ -24,7 +24,7 @@ function setUserDecsriptionAfterSignIn() {
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
     }
 ////
-$( document ).on( "vclick", ".AccountTopBarImgElement", function() {
+/*$( document ).on( "vclick", ".AccountTopBarImgElement", function() {
   $( this ).append( "<span style='color:#108040;'> vclick fired... </span>" );
   });
 ////
@@ -41,7 +41,7 @@ $(document).ready(function(){
 	});
 
 });
-
+*/
 
 /* API dla GOOGLE MAPS Skrypt do mapy */
 
