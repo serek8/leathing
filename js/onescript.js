@@ -14,10 +14,12 @@ function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
 	$.post("http://serek8.webatu.com/leathing.php",
     {
+		RequestMethodId : 1, // id logowania
         UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
     },
     function(data, status){
-        alert("Data: " + data + "\nStatus: " + status);
+        alert(cutDomainOwnCodeFromJSON(data));
+		alert( JSON.parse(data).FeedbackAlert; )
     });
 	myUser.IsSignedIn=1;
 }	
@@ -34,7 +36,7 @@ function setUserDecsriptionAfterSignIn() {
 
 $(document).on("pagecreate","#pageone",function(){
   $(".addNewLeathDiv").on("tap",function(){
-    alert('zuje');
+	jQuery.support.cors = true;
 	$.support.cors = true;
 	$.post("http://serek8.webatu.com/leathing.php",
 			{
@@ -43,7 +45,6 @@ $(document).on("pagecreate","#pageone",function(){
 			function(data, status){
 				alert("AJAX");
 	});
-	alert('zujeEND');
   });                       
 });
 
@@ -107,4 +108,9 @@ function onMapSuccess(position) {
 function onMapError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
+}
+
+function cutDomainOwnCodeFromJSON(arg){
+
+return arg.substr(0, a.indexOf('<!--'));
 }
