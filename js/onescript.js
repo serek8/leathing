@@ -12,6 +12,13 @@ function onLoad() {
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
+	$.post("serek8.webatu.com/leathing.php",
+    {
+        UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
+    },
+    function(data, status){
+        alert("Data: " + data + "\nStatus: " + status);
+    });
 	myUser.IsSignedIn=1;
 }	
 	
