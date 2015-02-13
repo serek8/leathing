@@ -12,7 +12,7 @@ function onLoad() {
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
-	$.post("serek8.webatu.com/leathing.php",
+	$.post("http://serek8.webatu.com/leathing.php",
     {
         UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
     },
@@ -31,24 +31,38 @@ function setUserDecsriptionAfterSignIn() {
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
     }
 ////
-/*$( document ).on( "vclick", ".AccountTopBarImgElement", function() {
-  $( this ).append( "<span style='color:#108040;'> vclick fired... </span>" );
-  });
-////
-$(document).ready(function(){
-  $(".AccountTopBarImgElement").click(function () {
-		if ( $( ".AccountSetting" ).is( ":hidden" ) ) {
-		$( "#googleMap" ).hide();
-		$( ".AccountSetting" ).show();			
-		}
-		else {
-			$( ".AccountSetting" ).hide();
-			$( "#googleMap" ).show();
-		}  
-	});
 
+$(document).on("pagecreate","#pageone",function(){
+  $(".addNewLeathDiv").on("tap",function(){
+    alert('zuje');
+	$.support.cors = true;
+	$.post("http://serek8.webatu.com/leathing.php",
+			{
+				UserIdUsedToSignIn: 2
+			},
+			function(data, status){
+				alert("AJAX");
+	});
+	alert('zujeEND');
+  });                       
 });
-*/
+
+
+
+/*$(document).on("pagecreate","#pageone",function(){
+  $("#addNewLeathDiv").on("tap",function(){
+    alert("You swiped right!");
+		/*$.post("http://serek8.webatu.com/leathing.php",
+			{
+				UserIdUsedToSignIn: myUser.UserIdUsedToSignIn
+			},
+			function(data, status){
+				alert("Data: " + data + "\nStatus: " + status);
+			});*/
+	//});
+  //});
+////
+
 
 /* API dla GOOGLE MAPS Skrypt do mapy */
 
