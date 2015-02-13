@@ -1,6 +1,6 @@
 var MyCurrentLatitude = 0;
 var MyCurrentLongitude = 0;
-var myUser = {UserId=0, UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
+var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
 var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 
