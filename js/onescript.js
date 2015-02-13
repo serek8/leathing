@@ -25,8 +25,8 @@ function setUserDecsriptionAfterSignIn() {
     function(data, status){
 		alert(data);
         alert(cutDomainOwnCodeFromJSON(data));
-		var jsonObj = JSON.parse(data)
-		alert( jsonObj.FeedbackAlert );
+		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+		alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
     });
 	myUser.IsSignedIn=1;
 }	
