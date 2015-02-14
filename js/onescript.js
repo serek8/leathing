@@ -30,7 +30,7 @@ function setUserDecsriptionAfterSignIn() {
     function(data, status){
 		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
 		//alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
-		
+		alert("po probie logowania "+JSON.stringify(jsonObj));
 		if(jsonObj.FeedbackAlert === 1) { /* Jezeli taki uzytkownik nie istnieje to utworz go w bazie danych */
 		alert("Taki user nie istnieje wiec go tworze..."+JSON.stringify(myUser));
 		//
@@ -43,9 +43,9 @@ function setUserDecsriptionAfterSignIn() {
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-				alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
+				alert("po probie rejestracji"+JSON.stringify(jsonObj));
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD6'); }
-				alert("tworze-id uzytkownika: "+jsonObj.FeedbackObj.UserId);
+				
 			});
 		
 		
