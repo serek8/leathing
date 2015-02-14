@@ -18,7 +18,7 @@ function onLoad() {
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
-	alert("moj user to: "+JSON.stringify(myUser));
+	//alert("moj user to: "+JSON.stringify(myUser));
 	/**
 	Wysylem zapytanie AJAX czy user o podanym UserIdUsedToSignUp istnieje
 	*/
@@ -30,32 +30,35 @@ function setUserDecsriptionAfterSignIn() {
     function(data, status){
 		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
 		//alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
-		alert("po probie logowania "+JSON.stringify(jsonObj));
-		if(jsonObj.FeedbackAlert === 1) { /* Jezeli taki uzytkownik nie istnieje to utworz go w bazie danych */
-		alert("Taki user nie istnieje wiec go tworze..."+JSON.stringify(myUser));
-		//
+		//alert("po probie logowania "+JSON.stringify(jsonObj));
+		if (jsonObj.FeedbackAlert === 0){ /* id:0 Logowanie zakonczylo sie sukcsem */
+			myUser.UserId=jsonObj.FeedbackObj.UserId;
+			myUser.IsSignedIn=1;	// Flaga ze user jest zalogowany
+		}
+		else if(jsonObj.FeedbackAlert === 1) { /* id:1  Taki uzytkownik nie istnieje, podejmuje probe rejestracji*/
+		//alert("Taki user nie istnieje wiec go tworze..."+JSON.stringify(myUser));
 			$.post(LeathingAjaxURL,
 			{
-				RequestMethodId : 2, // id rejestrowania w bazie danych na serwerze q po rejestracji AJAX przysyla dane jak przy logowaniu
+				RequestMethodId : 2, // id:2	Id rejestracji uzytkownika w bazie danych na serwerze
 				UserIdUsedToSignUp: myUser.UserIdUsedToSignUp,
 				UserName: myUser.UserName,
 				UserEmail: myUser.UserEmail
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-				alert("po probie rejestracji"+JSON.stringify(jsonObj));
+				//alert("po probie rejestracji"+JSON.stringify(jsonObj));
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD6'); }
-				
+				myUser.UserId=jsonObj.FeedbackObj.UserId;
+				myUser.IsSignedIn=1;
 			});
-		
-		
-		
 		}
-		myUser.UserId=jsonObj.FeedbackObj.UserId;
-		alert("co tak wczesnie id uzytkownika: "+jsonObj.FeedbackObj.UserId);
+		else{
+			alert("Nie moglem zalogowac uzytkownika BLAD !");
+		}
+		
 		
     });
-	myUser.IsSignedIn=1;
+	
 }	
 	
 
@@ -70,15 +73,8 @@ function setUserDecsriptionAfterSignIn() {
 
 $(document).on("pagecreate","#pageone",function(){
   $(".addNewLeathDiv").on("tap",function(){
-	jQuery.support.cors = true;
-	$.support.cors = true;
-	$.post("http://serek8.webatu.com/leathing.php",
-			{
-				UserIdUsedToSignUp: 2
-			},
-			function(data, status){
-				alert("AJAX");
-	});
+	alert(myUser.UserId);
+
   });                       
 });
 

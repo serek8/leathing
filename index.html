@@ -22,44 +22,46 @@
 </head>
 
 <body onload="onLoad();">
-<!-- TOP SECTION - HEADER -->
-<div data-role="page" id="pageone"> <!-- TEST -->
+<!-- PAGE ONE -->
+	<!-- TOP SECTION - HEADER -->
+	<div data-role="page" id="pageone"> 
 
-
-	<table class="AccountTopBar" id="AccountTopBar">
-	<tr>
-		<td>
-			<a href="#pagetwo">
-				<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" src="" width="40" height="40"></td>
-			</a>
-		<td id="AccountTopBarUserName">leathing.com</td>
-	</tr>
-	</table>
+		<table class="AccountTopBar" id="AccountTopBar">
+		<tr>
+			<td>
+				<a href="#pagetwo">
+					<img class="AccountTopBarImgElement" id="AccountTopBarImgElement" src="" width="40" height="40"></td>
+				</a>
+			<td id="AccountTopBarUserName">leathing.com</td>
+		</tr>
+		</table>
 
 	<!-- MIDDLE SECTION -  -->
-	<div id="googleMap"></div>
-	
-	<div class="addNewLeathDiv" id="addNewLeathDiv" style="display: table-cell; vertical-align: middle;" >
-		<img id="addNewLeathImg" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/add_square_button-512.png" width="45px" height="45px">
-	</div>
+		<div id="googleMap"></div>
+		<div class="addNewLeathDiv" id="addNewLeathDiv" style="display: table-cell; vertical-align: middle;" >
+			<img id="addNewLeathImg" src="https://cdn2.iconfinder.com/data/icons/designers-and-developers-icon-set/32/add_square_button-512.png" width="45px" height="45px">
+		</div>
 
-</div>      <!-- TEST -->
-<div data-role="page" id="pagetwo">
-	<table class="AccountTopBar">
-	<tr>
-		<td>
-			<a href="#pageone">
-				<img src="res/icon/map_pin.jpg" style="float: left;" width="40" height="40"></td>
-			</a>
-		<td id="AccountTopBarUserName">Profil</td>
-	</tr>
-	</table>
-	<div id="AccountSetting" class="AccountSetting">
-		jakies tam ustawienia np<br/> 
-		<button type="button" onclick="oneFacebookLogout();">Logout</button>
-		<div id="lokalizacjaTest">...</div>
+	</div>      
+<!-- PAGE TWO - AccountSetting -->
+	<!-- TOP SECTION -  -->
+		<div data-role="page" id="pagetwo">
+			<table class="AccountTopBar">
+			<tr>
+				<td>
+					<a href="#pageone">
+						<img src="res/icon/map_pin.jpg" style="float: left;" width="40" height="40"></td>
+					</a>
+				<td id="AccountTopBarUserName">Profil</td>
+			</tr>
+			</table>
+	<!-- MIDDLE SECTION -  -->
+		<div id="AccountSetting" class="AccountSetting">
+			jakies tam ustawienia np<br/> 
+			<button type="button" onclick="oneFacebookLogout();">Logout</button>
+			
+		</div>
 	</div>
-</div>
 
 
 
