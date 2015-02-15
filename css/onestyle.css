@@ -31,7 +31,7 @@ display: table-cell;
 vertical-align: middle;
 }
 
-img.AccountTopBarUserName
+td.AccountTopBarUserName
 {
 display: table-cell;
 vertical-align: middle;
@@ -70,10 +70,4 @@ top: 45px;
 bottom: 50px;
 width:100%;
 display:block;
-}
-
-#panelslidebuttonDodaj, #panelslidebuttonZostawione
-{
-display:none;
-height:100px;
 }

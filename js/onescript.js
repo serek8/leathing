@@ -71,13 +71,17 @@ function setUserDecsriptionAfterSignIn() {
     }
 ////
 
-$(document).on("pagecreate","#pageone",function(){
+/*$(document).on("pagecreate","#pageone",function(){
   $(".addNewLeathDiv").on("tap",function(){
-	alert(myUser.UserId);
+	//alert(myUser.UserId);
 
   });                       
+});*/
+$(document).on("pageshow","#pagethree",function(){
+ 
+	document.getElementById('AddPinDiv').innerHTML="<br>MyCurrentLatitude: "+MyCurrentLatitude+"<br>MyCurrentLongitude:"+MyCurrentLongitude;
+                     
 });
-
 
 /* API dla GOOGLE MAPS Skrypt do mapy */
 
