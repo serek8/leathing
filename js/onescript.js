@@ -70,35 +70,28 @@ function setUserDecsriptionAfterSignIn() {
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
     }
 ////
-/*$(document).on("pagecreate","#pageone",function(){
+$(document).on("pagecreate","#pageone",function(){
 	$("#addNewLeathDiv").on("tap",function(){
 		navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI	});
-                    
 	});
-});*/
-$(document).on("pagebeforeshow","#pagethree",function(){
-	
-	document.getElementById('AddPinDiv').innerHTML="<br>MyCurrentLatitude: "+MyCurrentLatitude+"<br>MyCurrentLongitude:"+MyCurrentLongitude;
-	navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50,
-	destinationType: Camera.DestinationType.FILE_URI
-	});
-                    
 });
 
-$(document).on("pageshow","#pagethree",function(){
+
+/*$(document).on("pageshow","#pagethree",function(){
  
 	//document.getElementById('AddPinDiv').innerHTML="<br>MyCurrentLatitude: "+MyCurrentLatitude+"<br>MyCurrentLongitude:"+MyCurrentLongitude;
 	//navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50,
 	//	destinationType: Camera.DestinationType.FILE_URI
 	//});
                     
-});
+});*/
 
 function onCameraSuccess(imageURI) {
     var image = document.getElementById('EventPhoto');
     image.src = imageURI;
 	document.getElementById('AddPinDiv').innerHTML+=imageURI;
-	//window.location.href="#pagethree";
+	$.mobile.changePage('#pagethree', { transition: "flip"} );
+	
 }
 
 function onCameraFail(message) {
