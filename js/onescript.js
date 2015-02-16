@@ -81,9 +81,10 @@ $(document).on("pageshow","#pagethree",function(){
                     
 });
 
-function onCameraSuccess(imageData) {
+function onCameraSuccess(imageURI) {
     var image = document.getElementById('EventPhoto');
     image.src = imageURI;
+	document.getElementById('AddPinDiv').innerHTML+=imageURI;
 }
 
 function onCameraFail(message) {
