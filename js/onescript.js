@@ -3,6 +3,7 @@ var MyCurrentLongitude = 0;
 var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdUsedToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
 var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
+var LeathingEventsAjax= "http://serek8.webatu.com/leathingEvents.php";
 
 function cutDomainOwnCodeFromJSON(arg){
 
@@ -72,7 +73,17 @@ function setUserDecsriptionAfterSignIn() {
 ////
 $(document).on("pagecreate","#pageone",function(){
 	$("#addNewLeathDiv").on("tap",function(){
-		navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI	});
+		//navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI	});
+		////
+		
+										navigator.camera.getPicture(uploadPhoto,
+                                        function(message) { alert('get picture failed'); },
+                                        { quality: 50, 
+                                        destinationType: navigator.camera.DestinationType.FILE_URI,
+                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                        );
+		
+		////
 	});
 });
 
@@ -144,5 +155,36 @@ function onMapError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
+
+
+// Wysylanie fotografi przy tworzeniu nowej pinezki
+
+        function uploadPhoto(imageURI) {
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName='obrazek';
+            options.mimeType="image/jpeg";
+
+            var params = {value1 : "test", value2 : "param" };
+            options.params = params;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, LeathingEventsAjax, win, fail, options);
+        }
+
+        function win(r) {
+            alert("Code = " + r.responseCode);
+            alert("Response = " + r.response);
+            alert("Sent = " + r.bytesSent);
+        }
+
+        function fail(error) {
+            alert("An error has occurred: Code = " + error.code);
+			alert("upload error source " + error.source);
+            alert("upload error target " + error.target);
+        }
+
+
+
 
 
