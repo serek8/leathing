@@ -77,8 +77,33 @@
 			</tr>
 			</table>
 	<!-- MIDDLE SECTION -  -->
-		<div id="AddPinDiv" class="AccountSetting">
-			<br/> pinezkowanie <br/> 
+		<div id="AddPinDiv" class="AccountSetting"><br>
+			<img id='EventPhoto' src="" width="100%"><br>po zdjeciu
+			<form method="post" action="demoform.asp">				
+				<label for="FormEventDescription">Additional Information:</label>
+					<textarea name="FormEventDescription" id="FormEventDescription" placeholder="Tutaj wpisz nazwe pinezki..."></textarea><br>
+				<fieldset class="ui-field-contain">
+					<label for="FormEventEpires">Udostępnij na</label>
+						<select name="FormEventEpires" id="FormEventEpires">
+							<option value="1">godzina</option>
+							<option value="2">dzien</option>
+							<option value="3">tydzien</option>
+							<option value="4">miesiac</option>
+							<option value="5">rok</option>
+							<option value="6">na zawsze</option>
+						</select>
+				</fieldset><br>
+				<fieldset data-role="controlgroup" data-type="horizontal">
+					<legend>Kto może widziec Twoją pinezkę:</legend>
+						<label for="FormShareOptionPublic">Public</label>
+							<input type="radio" name="FormShareOption" id="FormShareOptionPublic" value="1">
+						<label for="FormShareOptionAllFriends">All friends</label>
+							<input type="radio" name="FormShareOption" id="FormShareOptionAllFriends" value="2">	
+						<label for="FormShareOptionChooseFriends">Choose friends</label>
+							<input type="radio" name="FormShareOption" id="FormShareOptionChooseFriends" value="3">	
+				</fieldset><br>
+				<input type="submit" value="Submit Button">
+			</form>
 			
 			
 		</div>

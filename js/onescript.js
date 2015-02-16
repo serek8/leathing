@@ -71,17 +71,26 @@ function setUserDecsriptionAfterSignIn() {
     }
 ////
 
-/*$(document).on("pagecreate","#pageone",function(){
-  $(".addNewLeathDiv").on("tap",function(){
-	//alert(myUser.UserId);
 
-  });                       
-});*/
 $(document).on("pageshow","#pagethree",function(){
  
-	document.getElementById('AddPinDiv').innerHTML="<br>MyCurrentLatitude: "+MyCurrentLatitude+"<br>MyCurrentLongitude:"+MyCurrentLongitude;
-                     
+	//document.getElementById('AddPinDiv').innerHTML="<br>MyCurrentLatitude: "+MyCurrentLatitude+"<br>MyCurrentLongitude:"+MyCurrentLongitude;
+	navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50,
+		destinationType: Camera.DestinationType.FILE_URI
+	});
+                    
 });
+
+function onCameraSuccess(imageData) {
+    var image = document.getElementById('EventPhoto');
+    image.src = imageURI;
+}
+
+function onCameraFail(message) {
+    alert('Failed because: ' + message);
+}
+
+
 
 /* API dla GOOGLE MAPS Skrypt do mapy */
 
