@@ -6,7 +6,7 @@
 <title>leavething.com</title>
 <link rel="stylesheet" href="css/onestyle.css">
 <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
-
+<link rel="stylesheet" href="css/fixForJQM.css">
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCz10XHPBNcSFzgqSCBfyGPv5BAMLRejHs"></script>
 
@@ -66,7 +66,7 @@
 	
 <!-- PAGE THREE - AddPin -->
 	<!-- TOP SECTION -  -->
-		<div data-role="page" id="pagethree">
+		<div data-role="page" id="pagethree" class="scrollable">
 			<table class="AccountTopBar">
 			<tr>
 				<td>
@@ -77,11 +77,11 @@
 			</tr>
 			</table>
 	<!-- MIDDLE SECTION -  -->
-		<div id="AddPinDiv" class="AccountSetting"><br>
-			<img id='EventPhoto' src="" width="100%"><br>po zdjeciu
+		<div id="AddPinDiv" class="AccountSetting">
+			<img id='EventPhoto' src="" width="100%"><br>
 			<form method="post" action="demoform.asp">				
-				<label for="FormEventDescription">Additional Information:</label>
-					<textarea name="FormEventDescription" id="FormEventDescription" placeholder="Tutaj wpisz nazwe pinezki..."></textarea><br>
+				<label for="FormEventDescription">Opisz swoją pinezkę</label>
+					<textarea name="FormEventDescription" id="FormEventDescription" placeholder="..."></textarea><br>
 				<fieldset class="ui-field-contain">
 					<label for="FormEventEpires">Udostępnij na</label>
 						<select name="FormEventEpires" id="FormEventEpires">

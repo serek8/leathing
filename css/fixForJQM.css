@@ -1,3 +1,9 @@
+.scrollable {
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+
 .ui-page {
     -webkit-backface-visibility: hidden;
 }
