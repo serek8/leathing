@@ -89,7 +89,7 @@ function onCameraSuccess(imageURI) {
     var image = document.getElementById('EventPhoto');
     image.src = imageURI;
 	document.getElementById('AddPinDiv').innerHTML+=imageURI;
-	document.location.href="#pagethree";
+	location.href="#pagethree";
 }
 
 function onCameraFail(message) {
