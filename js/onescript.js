@@ -90,7 +90,7 @@ $(document).on("pagecreate","#pagethree",function(){
 				RequestMethodId : 11, // id dodawania nowej pinezki 
 				UserId : myUser.UserId,
 				PinDescription: $('#FormEventDescription').val(),
-				PinOptions: $("input[name='FormShareOption']:checked", '#newLeathForm').val(),
+				PinOptions: getRadioValue('FormShareOption'),
 				PinLatitude: MyCurrentLatitude,
 				PinLongtitude: MyCurrentLongitude
 			},
@@ -197,5 +197,15 @@ function onMapError(error) {
 
 
 
-
+function getRadioValue(theRadioGroup)
+{
+    var elements = document.getElementsByName(theRadioGroup);
+    for (var i = 0, l = elements.length; i < l; i++)
+    {
+        if (elements[i].checked)
+        {
+            return elements[i].value;
+        }
+    }
+}
 
