@@ -20,7 +20,6 @@ function onLoad() {
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
-	//alert("moj user to: "+JSON.stringify(myUser));
 	/**
 	Wysylem zapytanie AJAX czy user o podanym UserIdUsedToSignUp istnieje
 	*/
@@ -31,14 +30,12 @@ function setUserDecsriptionAfterSignIn() {
     },
     function(data, status){
 		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-		//alert( "Feedback to "+jsonObj.FeedbackAlert+ " | A teraz FeedbackObj to "+jsonObj.FeedbackObj);
-		//alert("po probie logowania "+JSON.stringify(jsonObj));
+
 		if (jsonObj.FeedbackAlert === 0){ /* id:0 Logowanie zakonczylo sie sukcsem */
 			myUser.UserId=jsonObj.FeedbackObj.UserId;
 			myUser.IsSignedIn=1;	// Flaga ze user jest zalogowany
 		}
 		else if(jsonObj.FeedbackAlert === 1) { /* id:1  Taki uzytkownik nie istnieje, podejmuje probe rejestracji*/
-		//alert("Taki user nie istnieje wiec go tworze..."+JSON.stringify(myUser));
 			$.post(LeathingAjaxURL,
 			{
 				RequestMethodId : 2, // id:2	Id rejestracji uzytkownika w bazie danych na serwerze
@@ -48,7 +45,6 @@ function setUserDecsriptionAfterSignIn() {
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-				//alert("po probie rejestracji"+JSON.stringify(jsonObj));
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD6'); }
 				myUser.UserId=jsonObj.FeedbackObj.UserId;
 				myUser.IsSignedIn=1;
@@ -66,73 +62,56 @@ function setUserDecsriptionAfterSignIn() {
 
 // device APIs are available
     function onDeviceReady() {
-	
 		oneFacebookGetStatus();
 		MapInitialize();
 		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
     }
-////
+
+	
 $(document).on("pagecreate","#pageone",function(){
 	$("#addNewLeathDiv").on("tap",function(){
-		//navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI	});
-		////
 		
 										navigator.camera.getPicture(onCameraSuccess,
                                         function(message) { alert('get picture failed'); },
                                         { quality: 50, 
-                                        destinationType: navigator.camera.DestinationType.FILE_URI,
-                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY }
+                                        destinationType: navigator.camera.DestinationType.FILE_URI/*,
+                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY*/ }
                                         );
-		
-		////
 	});
 });
 
+/* Stronda dodawania pinezki*/
+$(document).on("pagecreate","#pagethree",function(){
 
-/*$(document).on("pageshow","#pagethree",function(){
- 
-	//document.getElementById('AddPinDiv').innerHTML="<br>MyCurrentLatitude: "+MyCurrentLatitude+"<br>MyCurrentLongitude:"+MyCurrentLongitude;
-	//navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50,
-	//	destinationType: Camera.DestinationType.FILE_URI
-	//});
-                    
-});*/
+	/* PO kliknieciu na addNewLeathImg3 na trzeciej stronie*/
+	$("#addNewLeathImg3").on("tap",function(){		
+		$.post(LeathingEventsAjax,
+			{
+				RequestMethodId : 11, // id dodawania nowej pinezki 
+				UserId : myUser.UserId,
+				PinDescription: $('#FormEventDescription').val(),
+				PinOptions: $('FormShareOptionPublic').val(),
+				PinLatitude: MyCurrentLatitude,
+				PinLongtitude: MyCurrentLongitude
+			},
+			function(data, status){
+				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+		
+				if (jsonObj.FeedbackAlert === 0){ /* id:0 Dodawanie zakonczylo sie sukcsem */
+					MyPinId=jsonObj.FeedbackObj.PinId;
+					uploadPhoto(imageURI);
+				}
+				else{
+					alert("Nie moglem dodac podstawowych informacji o pinezce BLAD !");
+				}
+			});
+	}); 
+});
 
 function onCameraSuccess(imageURI) {	// po zrobieniu zdjecia
-
-//////////////////////////////////////////////////////////////////////////////////////////////
-
-$.post(LeathingEventsAjax,
-    {
-		RequestMethodId : 11, // id dodawania nowej pinezki 
-        UserId : myUser.UserId,
-		PinDescription:'obojetne',
-		PinOptions:4
-    },
-    function(data, status){
-		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-
-		if (jsonObj.FeedbackAlert === 0){ /* id:0 Dodawanie zakonczylo sie sukcsem */
-			MyPinId=jsonObj.FeedbackObj.PinId;
-			uploadPhoto(imageURI);
-		}
-		else{
-			alert("Nie moglem dodac podstawowych informacji o pinezce BLAD !");
-		}
-		
-		
-    });
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////
-
-
     var image = document.getElementById('EventPhoto');
     image.src = imageURI;
-	document.getElementById('AddPinDiv').innerHTML+=imageURI;
 	$.mobile.changePage('#pagethree', { transition: "flip"} );
-	
 }
 
 function onCameraFail(message) {
