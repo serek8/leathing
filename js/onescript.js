@@ -4,6 +4,7 @@ var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdUsedToSignUp: 0, User
 var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 var LeathingEventsAjax= "http://serek8.webatu.com/leathingEvents.php";
+var MyPinId = 0;
 
 function cutDomainOwnCodeFromJSON(arg){
 
@@ -97,7 +98,36 @@ $(document).on("pagecreate","#pageone",function(){
                     
 });*/
 
-function onCameraSuccess(imageURI) {
+function onCameraSuccess(imageURI) {	// po zrobieniu zdjecia
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+$.post(LeathingEventsAjax,
+    {
+		RequestMethodId : 11, // id dodawania nowej pinezki 
+        UserId : myUser.UserId,
+		PinDescription:'obojetne',
+		PinOptions:4
+    },
+    function(data, status){
+		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+
+		if (jsonObj.FeedbackAlert === 0){ /* id:0 Dodawanie zakonczylo sie sukcsem */
+			MyPinId=jsonObj.FeedbackObj.PinId;
+			uploadPhoto(imageURI);
+		}
+		else{
+			alert("Nie moglem zalogowac uzytkownika BLAD !");
+		}
+		
+		
+    });
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     var image = document.getElementById('EventPhoto');
     image.src = imageURI;
 	document.getElementById('AddPinDiv').innerHTML+=imageURI;
@@ -162,10 +192,10 @@ function onMapError(error) {
         function uploadPhoto(imageURI) {
             var options = new FileUploadOptions();
             options.fileKey="file";
-            options.fileName='obrazek';
+            options.fileName=MyPinId+".jpeg";
             options.mimeType="image/jpeg";
 
-            var params = {value1 : "test", value2 : "param" };
+            var params = {RequestMethodId : 12, value2 : "param" };		//RequestMethodId:12 id ladowania pliku
             options.params = params;
 
             var ft = new FileTransfer();
