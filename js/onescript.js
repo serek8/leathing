@@ -77,7 +77,7 @@ $(document).on("pagecreate","#pageone",function(){
 		//navigator.camera.getPicture(onCameraSuccess, onCameraFail, { quality: 50, destinationType: Camera.DestinationType.FILE_URI	});
 		////
 		
-										navigator.camera.getPicture(uploadPhoto,
+										navigator.camera.getPicture(onCameraSuccess,
                                         function(message) { alert('get picture failed'); },
                                         { quality: 50, 
                                         destinationType: navigator.camera.DestinationType.FILE_URI,
@@ -117,7 +117,7 @@ $.post(LeathingEventsAjax,
 			uploadPhoto(imageURI);
 		}
 		else{
-			alert("Nie moglem zalogowac uzytkownika BLAD !");
+			alert("Nie moglem dodac podstawowych informacji o pinezce BLAD !");
 		}
 		
 		
