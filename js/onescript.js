@@ -82,7 +82,7 @@ $(document).on("pagecreate","#pageone",function(){
 
 /* Stronda dodawania pinezki*/
 $(document).on("pagecreate","#pagethree",function(){
-
+	
 	/* PO kliknieciu na addNewLeathImg3 na trzeciej stronie*/
 	$("#addNewLeathImg3").on("tap",function(){		
 		$.post(LeathingEventsAjax,
@@ -91,8 +91,8 @@ $(document).on("pagecreate","#pagethree",function(){
 				UserId : myUser.UserId,
 				PinDescription: $('#FormEventDescription').val(),
 				PinOptions: getRadioValue('FormShareOption'),
-				PinLatitude: MyCurrentLatitude,
-				PinLongtitude: MyCurrentLongitude
+				PinLatitude: MyCurrentLatitude*1000000000000000,
+				PinLongtitude: MyCurrentLongitude*1000000000000000
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
