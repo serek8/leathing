@@ -185,7 +185,7 @@ function onMapError(error) {
 
         function win(r) {
             alert("Code = " + r.responseCode);
-            alert("Response = " + r.response);
+            alert("Response = " + cutDomainOwnCodeFromJSON(r.response));
             alert("Sent = " + r.bytesSent);
         }
 
