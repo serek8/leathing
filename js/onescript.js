@@ -90,7 +90,7 @@ $(document).on("pagecreate","#pagethree",function(){
 				RequestMethodId : 11, // id dodawania nowej pinezki 
 				UserId : myUser.UserId,
 				PinDescription: $('#FormEventDescription').val(),
-				PinOptions: $('input[name=FormShareOption]:checked', '#newLeathForm').val(),
+				PinOptions: $("input[name='FormShareOption']:checked", '#newLeathForm').val(),
 				PinLatitude: MyCurrentLatitude,
 				PinLongtitude: MyCurrentLongitude
 			},
