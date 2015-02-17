@@ -171,7 +171,9 @@ function onMapError(error) {
 // Wysylanie fotografi przy tworzeniu nowej pinezki
 
         function uploadPhoto() {
-            var options = new FileUploadOptions();
+            
+			/* zakomentowane zeby nie zrzeralo transferu
+			var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=MyPinId+".jpeg";
             options.mimeType="image/jpeg";
@@ -181,6 +183,7 @@ function onMapError(error) {
 
             var ft = new FileTransfer();
             ft.upload(MyNewPhotoLocation, LeathingEventsAjax, win, fail, options);
+			*/
         }
 
         function win(r) {
