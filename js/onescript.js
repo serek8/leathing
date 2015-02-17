@@ -91,8 +91,8 @@ $(document).on("pagecreate","#pagethree",function(){
 				UserId : myUser.UserId,
 				PinDescription: $('#FormEventDescription').val(),
 				PinOptions: getRadioValue('FormShareOption'),
-				PinLatitude: MyCurrentLatitude*1000000000000000,
-				PinLongtitude: MyCurrentLongitude*1000000000000000
+				PinLatitude: MyCurrentLatitude*10000000,		// 10^7
+				PinLongtitude: MyCurrentLongitude*10000000
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
