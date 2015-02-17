@@ -5,7 +5,7 @@ var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowa
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 var LeathingEventsAjax= "http://serek8.webatu.com/leathingEvents.php";
 var MyPinId = 0;
-
+var MyNewPhotoLocation = '';
 function cutDomainOwnCodeFromJSON(arg){
 
 return arg.substr(0, arg.indexOf('<!--'));
@@ -90,7 +90,7 @@ $(document).on("pagecreate","#pagethree",function(){
 				RequestMethodId : 11, // id dodawania nowej pinezki 
 				UserId : myUser.UserId,
 				PinDescription: $('#FormEventDescription').val(),
-				PinOptions: $('#FormShareOptionPublic').val(),
+				PinOptions: $('#FormShareOption').val(),
 				PinLatitude: MyCurrentLatitude,
 				PinLongtitude: MyCurrentLongitude
 			},
@@ -99,7 +99,8 @@ $(document).on("pagecreate","#pagethree",function(){
 		
 				if (jsonObj.FeedbackAlert === 0){ /* id:0 Dodawanie zakonczylo sie sukcsem */
 					MyPinId=jsonObj.FeedbackObj.PinId;
-					uploadPhoto(imageURI);
+					alert(MyPinId);
+					uploadPhoto();
 				}
 				else{
 					alert("Nie moglem dodac podstawowych informacji o pinezce BLAD !");
@@ -111,6 +112,7 @@ $(document).on("pagecreate","#pagethree",function(){
 function onCameraSuccess(imageURI) {	// po zrobieniu zdjecia
     var image = document.getElementById('EventPhoto');
     image.src = imageURI;
+	MyNewPhotoLocation = imageURI;
 	$.mobile.changePage('#pagethree', { transition: "flip"} );
 }
 
@@ -168,17 +170,17 @@ function onMapError(error) {
 
 // Wysylanie fotografi przy tworzeniu nowej pinezki
 
-        function uploadPhoto(imageURI) {
+        function uploadPhoto() {
             var options = new FileUploadOptions();
             options.fileKey="file";
             options.fileName=MyPinId+".jpeg";
             options.mimeType="image/jpeg";
 
-            var params = {RequestMethodId : 12, value2 : "param" };		//RequestMethodId:12 id ladowania pliku
+            var params = {RequestMethodId : 12};		//RequestMethodId:12 id ladowania pliku
             options.params = params;
 
             var ft = new FileTransfer();
-            ft.upload(imageURI, LeathingEventsAjax, win, fail, options);
+            ft.upload(MyNewPhotoLocation, LeathingEventsAjax, win, fail, options);
         }
 
         function win(r) {
