@@ -90,7 +90,7 @@ $(document).on("pagecreate","#pagethree",function(){
 				RequestMethodId : 11, // id dodawania nowej pinezki 
 				UserId : myUser.UserId,
 				PinDescription: $('#FormEventDescription').val(),
-				PinOptions: $('#FormShareOption').val(),
+				PinOptions: $('input[name=FormShareOption]:checked', '#newLeathForm').val(),
 				PinLatitude: MyCurrentLatitude,
 				PinLongtitude: MyCurrentLongitude
 			},
@@ -103,7 +103,7 @@ $(document).on("pagecreate","#pagethree",function(){
 					uploadPhoto();
 				}
 				else{
-					alert("Nie moglem dodac podstawowych informacji o pinezce BLAD !");
+					alert("Nie moglem dodac podstawowych informacji o pinezce BLAD="+jsonObj.FeedbackAlert+" | Desc="+jsonObj.FeedbackDescription);
 				}
 			});
 	}); 
