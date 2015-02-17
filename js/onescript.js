@@ -70,7 +70,7 @@ function setUserDecsriptionAfterSignIn() {
 	
 $(document).on("pagecreate","#pageone",function(){
 	$("#addNewLeathDiv").on("tap",function(){
-		
+										alert('koordtnaty:'+MyCurrentLatitude" i= "+MyCurrentLongitude);
 										navigator.camera.getPicture(onCameraSuccess,
                                         function(message) { alert('get picture failed'); },
                                         { quality: 50, 
