@@ -34,6 +34,7 @@ function setUserDecsriptionAfterSignIn() {
 		if (jsonObj.FeedbackAlert === 0){ /* id:0 Logowanie zakonczylo sie sukcsem */
 			myUser.UserId=jsonObj.FeedbackObj.UserId;
 			myUser.IsSignedIn=1;	// Flaga ze user jest zalogowany
+			getPinsNearby(jsonObj);
 		}
 		else if(jsonObj.FeedbackAlert === 1) { /* id:1  Taki uzytkownik nie istnieje, podejmuje probe rejestracji*/
 			$.post(LeathingAjaxURL,
@@ -48,17 +49,33 @@ function setUserDecsriptionAfterSignIn() {
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD6'); }
 				myUser.UserId=jsonObj.FeedbackObj.UserId;
 				myUser.IsSignedIn=1;
+				getPinsNearby(jsonObj);
 			});
 		}
 		else{
 			alert("Nie moglem zalogowac uzytkownika BLAD !");
 		}
-		
-		
     });
-	
 }	
-	
+
+function getPinsNearby(jsonObj){
+			$.post(LeathingEventsAjax,
+			{
+				RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
+			},
+			function(data, status){
+				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
+				myUser.UserId=jsonObj.FeedbackObj.UserId;
+				
+				for (i = 0; i < jsonObj.FeedbackDescription; i++) { 
+					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
+				}
+			});
+
+
+}
+
 
 // device APIs are available
     function onDeviceReady() {
@@ -121,9 +138,7 @@ function onCameraFail(message) {
 }
 
 
-
 /* API dla GOOGLE MAPS Skrypt do mapy */
-
 
 function MapInitialize() {
 var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
@@ -138,12 +153,18 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
 		icon: 'res/icon/maps/myloc.png'
 	});
 	MainMapObjFlag = 1;
+	
+	
+	
+	
+	
+	
+	
 }
+
+
 //google.maps.event.addDomListener(window, 'load', initialize);
 
-
-
-/* Koniec skryptu mapy */
 
 // GEOLOKALIZACJA
 
