@@ -3,7 +3,7 @@ var MyCurrentLongitude = 0;
 var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdUsedToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 var LeathingEventsAjax= "http://serek8.webatu.com/leathingEvents.php";
-var MyPinId = 0;
+var MyPinId = 0;	// id pinezki ktora dodaje
 var MyNewPhotoLocation = '';
 function cutDomainOwnCodeFromJSON(arg){
 
@@ -23,7 +23,7 @@ function getPinsNearby(){
 		
 			for (i = 0; i < jsonObj.FeedbackDescription ; i++) { 
 				//alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
-				myMainMap.showNewPin(jsonObj.FeedbackObj[i].Latitude, jsonObj.FeedbackObj[i].Longtitude);
+				myMainMap.showNewPin(jsonObj.FeedbackObj[i].PinId, jsonObj.FeedbackObj[i].Latitude, jsonObj.FeedbackObj[i].Longtitude);
 			}
 	});
 }
@@ -176,16 +176,21 @@ var myMainMap = {
 		this.MainMapObjFlag = 1;
 	},
 	
-	showNewPin : function(Latitude, Longitude) {
+	showNewPin : function(Latitude, Longitude, PinId) {
 		var marker = new google.maps.Marker({
 		position: new google.maps.LatLng((Latitude/10000000),(Longitude/10000000)), // bo w bazie danych jest 10^7
 		map: this.MainMapObj
 		});
+		marker.addListener('click', function(){moveToPinPreview(PinId);});
 	}
 	
 };
 
+function moveToPinPreview(PinId)
+{
+alert(PinId);
 
+}
 
 
 
