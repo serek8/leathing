@@ -17,12 +17,13 @@ function getPinsNearby(){
 				RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
 			},
 			function(data, status){
+				alert('wszedlem');
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
 				alert(JSON.stringify(jsonObj));
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
 				
-				for (i = 0; i < jsonObj.FeedbackDescription; i++) { 
-					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
+				for (i = 0; i < jsonObj.FeedbackObj.PinCoordinateSize; i++) { 
+					alert(jsonObj.FeedbackObj.PinCoordinate[i].Latitude+" i= "+jsonObj.FeedbackObj.PinCoordinate[i].Longtitude);
 				}
 			});
 
@@ -91,7 +92,7 @@ function setUserDecsriptionAfterSignIn() {
 	
 $(document).on("pagecreate","#pageone",function(){
 	$("#addNewLeathDiv").on("tap",function(){
-										alert('koordtnaty:'+MyCurrentLatitude+" i= "+MyCurrentLongitude);
+										//alert('koordtnaty:'+MyCurrentLatitude+" i= "+MyCurrentLongitude);
 										navigator.camera.getPicture(onCameraSuccess,
                                         function(message) { alert('get picture failed'); },
                                         { quality: 50, 
