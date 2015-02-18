@@ -11,22 +11,21 @@ return arg.substr(0, arg.indexOf('<!--'));
 }
 
 function getPinsNearby(){
-			$.post(LeathingEventsAjax,
-			{
-				RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
-			},
-			function(data, status){
-				alert('wszedlem');
-				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-				alert(JSON.stringify(jsonObj));
-				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
-				
-				for (i = 0; i < jsonObj.FeedbackDescription ; i++) { 
-					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
-				}
-			});
-
-
+	$.post(LeathingEventsAjax,
+	{
+		RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
+	},
+	function(data, status){
+		alert('wszedlem');
+		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+		alert(JSON.stringify(jsonObj));
+		if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
+		
+			for (i = 0; i < jsonObj.FeedbackDescription ; i++) { 
+				//alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
+				showNewPin(jsonObj.FeedbackObj[i].Latitude, jsonObj.FeedbackObj[i].Longtitude);
+			}
+	});
 }
 
 
@@ -91,20 +90,33 @@ function setUserDecsriptionAfterSignIn() {
 	
 $(document).on("pagecreate","#pageone",function(){
 	$("#addNewLeathDiv").on("tap",function(){
-										//alert('koordtnaty:'+MyCurrentLatitude+" i= "+MyCurrentLongitude);
-										navigator.camera.getPicture(onCameraSuccess,
-                                        function(message) { alert('get picture failed'); },
-                                        { quality: 50, 
-                                        destinationType: navigator.camera.DestinationType.FILE_URI/*,
-                                        sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY*/ }
-                                        );
+		//alert('koordtnaty:'+MyCurrentLatitude+" i= "+MyCurrentLongitude);
+		navigator.camera.getPicture(onCameraSuccess,
+			function(message) { alert('get picture failed'); },
+			{ quality: 50, 
+				destinationType: navigator.camera.DestinationType.FILE_URI/*,
+				sourceType: navigator.camera.PictureSourceType.PHOTOLIBRARY*/ }
+			);
 	});
 });
 
-/* Stronda dodawania pinezki*/
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * * */
+/*  pagecreate		#pagethree	(strony dodawania pinezki)				*/
+/*																		*/
+/* Funckje jQuery po zaladowaniu #pagethree (strony dodawania pinezki)	*/
+/*																		*/
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * */
 $(document).on("pagecreate","#pagethree",function(){
 	
-	/* PO kliknieciu na addNewLeathImg3 na trzeciej stronie*/
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * */
+	/*  onTap	addNewLeathImg3		#pagethree						*/
+	/*																*/
+	/*	Funkcja wysyła wszystkie dane z form przez Ajax				*/
+	/*	a nastepnie laduje zdjecie na serwer pod nazwa				*/
+	/*	PinId.jpg													*/
+	/*																*/
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * *  * */
 	$("#addNewLeathImg3").on("tap",function(){		
 		$.post(LeathingEventsAjax,
 			{
@@ -162,7 +174,15 @@ var myMainMap = {
 			icon: 'res/icon/maps/myloc.png'
 		});
 		this.MainMapObjFlag = 1;
+	},
+	
+	showNewPin : function(Latitude, Longitude) {
+		var marker = new google.maps.Marker({
+		position: new google.maps.LatLng((Latitude/10000000),(Longitude/10000000)), // bo w bazie danych jest 10^7
+		map: this.MainMapObj
+		});
 	}
+	
 };
 
 
@@ -197,33 +217,33 @@ function onWatchPositionError(error) {
 
 // Wysylanie fotografi przy tworzeniu nowej pinezki
 
-        function uploadPhoto() {
+function uploadPhoto() {
             
-			/* zakomentowane zeby nie zrzeralo transferu
-			var options = new FileUploadOptions();
-            options.fileKey="file";
-            options.fileName=MyPinId+".jpeg";
-            options.mimeType="image/jpeg";
+	/* zakomentowane zeby nie zrzeralo transferu
+	var options = new FileUploadOptions();
+	options.fileKey="file";
+	options.fileName=MyPinId+".jpeg";
+	options.mimeType="image/jpeg";
 
-            var params = {RequestMethodId : 12};		//RequestMethodId:12 id ladowania pliku
-            options.params = params;
+	var params = {RequestMethodId : 12};		//RequestMethodId:12 id ladowania pliku
+	options.params = params;
 
-            var ft = new FileTransfer();
-            ft.upload(MyNewPhotoLocation, LeathingEventsAjax, win, fail, options);
-			*/
-        }
+	var ft = new FileTransfer();
+	ft.upload(MyNewPhotoLocation, LeathingEventsAjax, win, fail, options);
+	*/
+}
 
-        function win(r) {
-            alert("Code = " + r.responseCode);
-            alert("Response = " + cutDomainOwnCodeFromJSON(r.response));
-            alert("Sent = " + r.bytesSent);
-        }
+function win(r) {
+	alert("Code = " + r.responseCode);
+	alert("Response = " + cutDomainOwnCodeFromJSON(r.response));
+	alert("Sent = " + r.bytesSent);
+}
 
-        function fail(error) {
-            alert("An error has occurred: Code = " + error.code);
-			alert("upload error source " + error.source);
-            alert("upload error target " + error.target);
-        }
+function fail(error) {
+	alert("An error has occurred: Code = " + error.code);
+	alert("upload error source " + error.source);
+	alert("upload error target " + error.target);
+}
 
 
 
