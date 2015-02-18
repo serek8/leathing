@@ -1,7 +1,6 @@
 var MyCurrentLatitude = 0;
 var MyCurrentLongitude = 0;
 var myUser = {UserId:0, UserName: "", UserEmail: "", UserIdUsedToSignUp: 0, UserImageURL: "", IsSignedIn: 0};
-var MainMapObjFlag = 0; // Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
 var LeathingAjaxURL = "http://serek8.webatu.com/leathing.php";
 var LeathingEventsAjax= "http://serek8.webatu.com/leathingEvents.php";
 var MyPinId = 0;
@@ -37,7 +36,7 @@ function onLoad() {
     }	
 	
 
-// wyswietla dane uzytkownika po zalogowaniu facebookiem
+// wyswietla dane uzytkownika po zalogowaniu facebookiem oraz odczytuje jego UserId
 function setUserDecsriptionAfterSignIn() {
 	document.getElementById("AccountTopBarUserName").innerHTML=(myUser.UserName);	
 	document.getElementById("AccountTopBarImgElement").src=myUser.UserImageURL;
@@ -85,8 +84,8 @@ function setUserDecsriptionAfterSignIn() {
 // device APIs are available
     function onDeviceReady() {
 		oneFacebookGetStatus();
-		MapInitialize();
-		watchID = navigator.geolocation.watchPosition(onMapSuccess, onMapError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
+		myMainMap.MapInitialize();
+		watchID = navigator.geolocation.watchPosition(onWatchPositionSuccess, onWatchPositionError, { maximumAge: 1000, timeout: 5000, enableHighAccuracy: true });
     }
 
 	
@@ -144,28 +143,30 @@ function onCameraFail(message) {
 
 
 /* API dla GOOGLE MAPS Skrypt do mapy */
+var myMainMap = {
+	MainMapObj : 0,
+	MainMapObjFlag : 0,	// Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
+	myloc: 0;	// marker mojej lokalizacji
+	
+	MapInitialize : function() {
+	
+		var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
+		var mapOptions = {
+			center: myCurrentLatIng,
+			zoom: 15
+		};
+		this.MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
+		this.myloc = new google.maps.Marker({
+			position: myCurrentLatIng,
+			map: this.MainMapObj,
+			icon: 'res/icon/maps/myloc.png'
+		});
+		this.MainMapObjFlag = 1;
+	}
+};
 
-function MapInitialize() {
-var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude);
-    var mapOptions = {
-        center: myCurrentLatIng,
-        zoom: 15
-    };
-    MainMapObj = new google.maps.Map(document.getElementById('googleMap'), mapOptions);
-	myloc = new google.maps.Marker({
-		position: myCurrentLatIng,
-		map: MainMapObj,
-		icon: 'res/icon/maps/myloc.png'
-	});
-	MainMapObjFlag = 1;
-	
-	
-	
-	
-	
-	
-	
-}
+
+
 
 
 //google.maps.event.addDomListener(window, 'load', initialize);
@@ -177,18 +178,18 @@ var myCurrentLatIng = new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitud
 //   This method accepts a `Position` object, which contains
 //   the current GPS coordinates
 //
-function onMapSuccess(position) {
+function onWatchPositionSuccess(position) {
 	MyCurrentLatitude=position.coords.latitude;
 	MyCurrentLongitude=position.coords.longitude;
 	
-	if(MainMapObjFlag===1){MainMapObjFlag=2; MainMapObj.setCenter(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude)); }
+	if(myMainMap.MainMapObjFlag===1){myMainMap.MainMapObjFlag=2; myMainMap.MainMapObj.setCenter(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude)); }
 	
-	if(MainMapObjFlag===2) myloc.setPosition(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude));
+	if(myMainMap.MainMapObjFlag===2) myMainMap.myloc.setPosition(new google.maps.LatLng(MyCurrentLatitude,MyCurrentLongitude));
 }
 
 // onError Callback receives a PositionError object
 //
-function onMapError(error) {
+function onWatchPositionError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
 }
