@@ -181,7 +181,7 @@ var myMainMap = {
 		position: new google.maps.LatLng((Latitude/10000000),(Longitude/10000000)), // bo w bazie danych jest 10^7
 		map: this.MainMapObj
 		});
-		marker.addListener('click', function(){moveToPinPreview(PinId);});
+		//marker.addListener('click', function(){moveToPinPreview(PinId);});
 	}
 	
 };
