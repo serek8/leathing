@@ -176,12 +176,12 @@ var myMainMap = {
 		this.MainMapObjFlag = 1;
 	},
 	
-	showNewPin : function(Latitude, Longitude, PinId) {
+	showNewPin : function(PinId, Latitude, Longitude) {
 		var marker = new google.maps.Marker({
 		position: new google.maps.LatLng((Latitude/10000000),(Longitude/10000000)), // bo w bazie danych jest 10^7
 		map: this.MainMapObj
 		});
-		//marker.addListener('click', function(){moveToPinPreview(PinId);});
+		marker.addListener('click', function(){moveToPinPreview(PinId);});
 	}
 	
 };
