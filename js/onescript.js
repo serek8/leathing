@@ -22,8 +22,8 @@ function getPinsNearby(){
 				alert(JSON.stringify(jsonObj));
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
 				
-				for (i = 0; i < jsonObj.FeedbackObj.PinCoordinateSize; i++) { 
-					alert(jsonObj.FeedbackObj.PinCoordinate[i].Latitude+" i= "+jsonObj.FeedbackObj.PinCoordinate[i].Longtitude);
+				for (i = 0; i < jsonObj.FeedbackDescription ; i++) { 
+					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
 				}
 			});
 
