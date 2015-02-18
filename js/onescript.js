@@ -34,7 +34,7 @@ function setUserDecsriptionAfterSignIn() {
 		if (jsonObj.FeedbackAlert === 0){ /* id:0 Logowanie zakonczylo sie sukcsem */
 			myUser.UserId=jsonObj.FeedbackObj.UserId;
 			myUser.IsSignedIn=1;	// Flaga ze user jest zalogowany
-			getPinsNearby(jsonObj);
+			getPinsNearby();
 		}
 		else if(jsonObj.FeedbackAlert === 1) { /* id:1  Taki uzytkownik nie istnieje, podejmuje probe rejestracji*/
 			$.post(LeathingAjaxURL,
@@ -49,7 +49,7 @@ function setUserDecsriptionAfterSignIn() {
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD6'); }
 				myUser.UserId=jsonObj.FeedbackObj.UserId;
 				myUser.IsSignedIn=1;
-				getPinsNearby(jsonObj);
+				getPinsNearby();
 			});
 		}
 		else{
@@ -58,15 +58,15 @@ function setUserDecsriptionAfterSignIn() {
     });
 }	
 
-function getPinsNearby(jsonObj){
+function getPinsNearby(){
 			$.post(LeathingEventsAjax,
 			{
 				RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
 			},
 			function(data, status){
 				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+				alert(JSON.stringify(jsonObj));
 				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
-				myUser.UserId=jsonObj.FeedbackObj.UserId;
 				
 				for (i = 0; i < jsonObj.FeedbackDescription; i++) { 
 					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
