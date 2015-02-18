@@ -11,6 +11,26 @@ function cutDomainOwnCodeFromJSON(arg){
 return arg.substr(0, arg.indexOf('<!--'));
 }
 
+function getPinsNearby(){
+			$.post(LeathingEventsAjax,
+			{
+				RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
+			},
+			function(data, status){
+				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
+				alert(JSON.stringify(jsonObj));
+				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
+				
+				for (i = 0; i < jsonObj.FeedbackDescription; i++) { 
+					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
+				}
+			});
+
+
+}
+
+
+
 function onLoad() {
         document.addEventListener("deviceready", onDeviceReady, false);
     }	
@@ -58,23 +78,7 @@ function setUserDecsriptionAfterSignIn() {
     });
 }	
 
-function getPinsNearby(){
-			$.post(LeathingEventsAjax,
-			{
-				RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
-			},
-			function(data, status){
-				var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-				alert(JSON.stringify(jsonObj));
-				if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
-				
-				for (i = 0; i < jsonObj.FeedbackDescription; i++) { 
-					alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
-				}
-			});
 
-
-}
 
 
 // device APIs are available
