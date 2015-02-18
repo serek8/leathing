@@ -23,7 +23,7 @@ function getPinsNearby(){
 		
 			for (i = 0; i < jsonObj.FeedbackDescription ; i++) { 
 				//alert(jsonObj.FeedbackObj[i].Latitude+" i= "+jsonObj.FeedbackObj[i].Longtitude);
-				showNewPin(jsonObj.FeedbackObj[i].Latitude, jsonObj.FeedbackObj[i].Longtitude);
+				myMainMap.showNewPin(jsonObj.FeedbackObj[i].Latitude, jsonObj.FeedbackObj[i].Longtitude);
 			}
 	});
 }
