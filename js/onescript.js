@@ -146,7 +146,7 @@ function onCameraFail(message) {
 var myMainMap = {
 	MainMapObj : 0,
 	MainMapObjFlag : 0,	// Uzywam do sprawdzania czy googleMaps sie juz zaladowalo
-	myloc: 0;	// marker mojej lokalizacji
+	myloc: 0,	// marker mojej lokalizacji
 	
 	MapInitialize : function() {
 	
