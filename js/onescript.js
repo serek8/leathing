@@ -16,9 +16,9 @@ function getPinsNearby(){
 		RequestMethodId : 13 // id:13	Id pobierania pozycji pinezek
 	},
 	function(data, status){
-		alert('wszedlem');
+		//alert('wszedlem');
 		var jsonObj = JSON.parse(cutDomainOwnCodeFromJSON(data));
-		alert(JSON.stringify(jsonObj));
+		//alert(JSON.stringify(jsonObj));
 		if((jsonObj.FeedbackAlert !== 0)) {alert('BLAD7'); }
 		
 			for (i = 0; i < jsonObj.FeedbackDescription ; i++) { 
@@ -132,7 +132,7 @@ $(document).on("pagecreate","#pagethree",function(){
 		
 				if (jsonObj.FeedbackAlert === 0){ /* id:0 Dodawanie zakonczylo sie sukcsem */
 					MyPinId=jsonObj.FeedbackObj.PinId;
-					alert(MyPinId);
+					//alert(MyPinId);
 					uploadPhoto();
 				}
 				else{
@@ -190,7 +190,7 @@ function moveToPinPreview(PinId)
 {
     var image = document.getElementById('PinPhoto4');	// Kncowka to 4 po znajduje sie na page4
     image.src = "http://serek8.webatu.com/uploads/"+PinId+".jpeg";
-	$.mobile.changePage('#pagefour', { transition: "flip"} );
+	$.mobile.changePage('#pagefour', { transition: "pop"} );
 
 }
 
