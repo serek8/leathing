@@ -188,7 +188,9 @@ var myMainMap = {
 
 function moveToPinPreview(PinId)
 {
-alert(PinId);
+    var image = document.getElementById('PinPhoto4');	// Kncowka to 4 po znajduje sie na page4
+    image.src = "http://serek8.webatu.com/uploads/"+PinId+".jpeg";
+	$.mobile.changePage('#pagefour', { transition: "flip"} );
 
 }
 
