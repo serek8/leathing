@@ -226,7 +226,7 @@ function onWatchPositionError(error) {
 
 function uploadPhoto() {
             
-	 zakomentowane zeby nie zrzeralo transferu
+	// zakomentowane zeby nie zrzeralo transferu
 	var options = new FileUploadOptions();
 	options.fileKey="file";
 	options.fileName=MyPinId+".jpeg";
